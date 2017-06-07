@@ -8,14 +8,6 @@
 
 import Foundation
 
-func changeSign(operand: Double) -> Double {
-    return -operand
-}
-
-func multiply(op1: Double, op2: Double) -> Double {
-    return op1 * op2
-}
-
 struct CalculatorBrain {
     
     private var accumulator: Double?
@@ -33,8 +25,11 @@ struct CalculatorBrain {
             "e": Operation.constant(M_E),
             "√": Operation.unaryOperation(sqrt),
             "cos": Operation.unaryOperation(cos),
-            "±": Operation.unaryOperation(changeSign),
-            "x": Operation.binaryOperation(multiply),
+            "±": Operation.unaryOperation({ -$0 }),
+            "×": Operation.binaryOperation({ $0 * $1 }),
+            "÷": Operation.binaryOperation({ $0 / $1 }),
+            "+": Operation.binaryOperation({ $0 + $1 }),
+            "-": Operation.binaryOperation({ $0 - $1 }),
             "=": Operation.equals
         ]
     
@@ -52,7 +47,7 @@ struct CalculatorBrain {
                 
             case .binaryOperation(let function):
                 if accumulator != nil {
-                    pbo = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
                     accumulator = nil
                 }
             case .equals:
@@ -63,12 +58,13 @@ struct CalculatorBrain {
     }
     
     private mutating func performPendingBinaryOperation() {
-        if pbo != nil && accumulator != nil{
-            accumulator = pbo!.perform(with: accumulator!)
+        if pendingBinaryOperation != nil && accumulator != nil{
+            accumulator = pendingBinaryOperation!.perform(with: accumulator!)
+            pendingBinaryOperation = nil
         }
     }
     
-    private var pbo: PendingBinaryOperation?
+    private var pendingBinaryOperation: PendingBinaryOperation?
     
     private struct PendingBinaryOperation {
         let function: (Double, Double) -> Double
