@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
     
+    @IBOutlet weak var displayDescription: UILabel!
+    
     var userIsInTheMiddleOfTyping = false
 
     @IBAction func touchDot(_ sender: UIButton) {
@@ -55,6 +57,7 @@ class ViewController: UIViewController {
         
         if let mathematicalSymbol = sender.currentTitle {
             brain.performOperation(mathematicalSymbol)
+            displayDescription.text = brain.description
         }
         
         if let result = brain.result {

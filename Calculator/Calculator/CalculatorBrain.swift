@@ -12,6 +12,8 @@ struct CalculatorBrain {
     
     private var accumulator: Double?
     
+    var description = ""
+    
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double) -> Double)
@@ -34,35 +36,67 @@ struct CalculatorBrain {
             "-": Operation.binaryOperation({ $0 - $1 }),
             "%": Operation.binaryOperation({ $0.truncatingRemainder(dividingBy: $1) }),
             "=": Operation.equals
-        ]
+    ]
     
     mutating func performOperation(_ symbol: String) {
         if let operation = operations[symbol]{
             switch operation {
                 
             case .constant(let value):
+                
+                description += symbol
+                print(description)
+
                 accumulator = value
                 
             case .unaryOperation(let function):
                 if accumulator != nil {
-                     accumulator = function(accumulator!)
+                    if resultIsPending {
+                        description += symbol +  "(" + String(accumulator!) + ")"
+                    } else if description.isEmpty{
+                        description = symbol + "(" + String(accumulator!) + ")"
+                    } else {
+                        description = " " + symbol + "(" + description + ")"
+                    }
+                    
+                    print(description)
+                    
+                    accumulator = function(accumulator!)
+                    
                 }
                 
             case .binaryOperation(let function):
                 if accumulator != nil {
+                    
+                    if description.isEmpty {
+                        description += String(accumulator!) + " " + symbol + " ..."
+                    } else {
+                        description += " " + symbol
+                    }
+                    
+                    print(description)
+
                     resultIsPending = true
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
                     accumulator = nil
                 }
             case .equals:
+               
                 performPendingBinaryOperation()
+                print(description)
             }
-        
+            
         }
     }
     
     private mutating func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil{
+            
+            let range = description.index(description.endIndex, offsetBy: -3)..<description.endIndex
+            description.removeSubrange(range)
+            
+            description += String(accumulator!) + " =" 
+            
             accumulator = pendingBinaryOperation!.perform(with: accumulator!)
             pendingBinaryOperation = nil
             resultIsPending = false
