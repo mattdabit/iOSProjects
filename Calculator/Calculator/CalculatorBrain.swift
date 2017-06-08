@@ -43,16 +43,22 @@ struct CalculatorBrain {
             switch operation {
                 
             case .constant(let value):
-                
-                description += symbol
-                accumulator = value
+                if resultIsPending {
+                    description = description.replacingOccurrences(of: " ...", with: "")
+                    description += " " + symbol + " ..."
+                    accumulator = value
+                    operationUsedWhileResultIsPending = true
+                } else {
+                    description += symbol
+                    accumulator = value
+                }
                 
             case .unaryOperation(let function):
                 if accumulator != nil {
                     if resultIsPending {
                         description = description.replacingOccurrences(of: " ...", with: "")
                         description += " " + symbol +  "(" + String(accumulator!) + ") ..."
-                        unaryOperationUsedWhileResultIsPending = true
+                        operationUsedWhileResultIsPending = true
                     } else if description.isEmpty{
                         description = symbol + "(" + String(accumulator!) + ")"
                     } else {
@@ -86,10 +92,10 @@ struct CalculatorBrain {
                     accumulator = nil
                 }
             case .equals:
-                if unaryOperationUsedWhileResultIsPending {
+                if operationUsedWhileResultIsPending {
                     description = description.replacingOccurrences(of: " ...", with: "")
                     description += " ="
-                } else {
+                } else if !description.contains("="){
                     description = description.replacingOccurrences(of: " ...", with: "")
                     description += " " + String(accumulator!) + " ="
                 }
@@ -112,7 +118,7 @@ struct CalculatorBrain {
     private var pendingBinaryOperation: PendingBinaryOperation?
     
     private var resultIsPending = false
-    private var unaryOperationUsedWhileResultIsPending = false
+    private var operationUsedWhileResultIsPending = false
     
     private struct PendingBinaryOperation {
         let function: (Double, Double) -> Double
