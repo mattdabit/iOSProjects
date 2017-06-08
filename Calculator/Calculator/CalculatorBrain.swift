@@ -73,6 +73,9 @@ struct CalculatorBrain {
                     } else if description.contains("=") {
                         removeEqualSignFromDescription()
                         description += " " + symbol + " ..."
+                    } else if resultIsPending {
+                        removeEllipsesFromDescription()
+                        description += " " + String(accumulator!) + " " + symbol + " ..."
                     } else {
                         description += " " + symbol
                     }
@@ -106,12 +109,15 @@ struct CalculatorBrain {
                 
             case .binaryOperation(let function):
                 if accumulator != nil {
-                    
+                    if resultIsPending {
+                        performPendingBinaryOperation()
+                    }
                     resultIsPending = true
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
                     accumulator = nil
                 }
             case .equals:
+            
                 performPendingBinaryOperation()
             
             case .clear:
