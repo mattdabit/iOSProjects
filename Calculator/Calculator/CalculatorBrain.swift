@@ -57,7 +57,7 @@ struct CalculatorBrain {
                         description += " " + symbol +  "(" + String(accumulator!) + ") ..."
                         operationUsedWhileResultIsPending = true
                     } else if description.isEmpty{
-                        description = symbol + "(" + String(accumulator!) + ")"
+                        description = symbol + "(" + String(accumulator!) + ") ="
                     } else {
                         removeEqualSignFromDescription()
                         description = " " + symbol + "(" + description + ") ="
@@ -68,13 +68,11 @@ struct CalculatorBrain {
                 if accumulator != nil {
                     if description.isEmpty {
                         description += String(accumulator!) + " " + symbol + " ..."
+                    } else if description.contains("=") {
+                        removeEqualSignFromDescription()
+                        description += " " + symbol + " ..."
                     } else {
-                        if description.contains("=") {
-                            removeEqualSignFromDescription()
-                            description += " " + symbol + " ..."
-                        } else {
-                            description += " " + symbol
-                        }
+                        description += " " + symbol
                     }
                 }
             case .equals:
