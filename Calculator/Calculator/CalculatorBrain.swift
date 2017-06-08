@@ -44,7 +44,7 @@ struct CalculatorBrain {
                 
             case .constant(let value):
                 if resultIsPending {
-                    description = description.replacingOccurrences(of: " ...", with: "")
+                    removeEllipsesFromDescription()
                     description += " " + symbol + " ..."
                     accumulator = value
                     operationUsedWhileResultIsPending = true
@@ -56,16 +56,15 @@ struct CalculatorBrain {
             case .unaryOperation(let function):
                 if accumulator != nil {
                     if resultIsPending {
-                        description = description.replacingOccurrences(of: " ...", with: "")
+                        removeEllipsesFromDescription()
                         description += " " + symbol +  "(" + String(accumulator!) + ") ..."
                         operationUsedWhileResultIsPending = true
                     } else if description.isEmpty{
                         description = symbol + "(" + String(accumulator!) + ")"
                     } else {
-                        description = description.replacingOccurrences(of: " =", with: "")
+                        removeEqualSignFromDescription()
                         description = " " + symbol + "(" + description + ") ="
                     }
-                    
                     
                     accumulator = function(accumulator!)
                     
@@ -78,9 +77,8 @@ struct CalculatorBrain {
                         description += String(accumulator!) + " " + symbol + " ..."
                     } else {
                         if description.contains("=") {
-                            description = description.replacingOccurrences(of: " =", with: "")
+                            removeEqualSignFromDescription()
                             description += " " + symbol + " ..."
-
                         } else {
                             description += " " + symbol
                         }
@@ -93,10 +91,10 @@ struct CalculatorBrain {
                 }
             case .equals:
                 if operationUsedWhileResultIsPending {
-                    description = description.replacingOccurrences(of: " ...", with: "")
+                    removeEllipsesFromDescription()
                     description += " ="
                 } else if !description.contains("="){
-                    description = description.replacingOccurrences(of: " ...", with: "")
+                    removeEllipsesFromDescription()
                     description += " " + String(accumulator!) + " ="
                 }
                 
@@ -142,4 +140,12 @@ struct CalculatorBrain {
         }
     }
     
+    
+    private mutating func removeEllipsesFromDescription(){
+        description = description.replacingOccurrences(of: " ...", with: "")
+    }
+    
+    private mutating func removeEqualSignFromDescription(){
+        description = description.replacingOccurrences(of: " =", with: "")
+    }
 }
