@@ -18,6 +18,7 @@ struct CalculatorBrain {
         case unaryOperation((Double) -> Double)
         case binaryOperation((Double, Double) -> Double)
         case equals
+        case clear
     }
     
     private var operations: Dictionary<String, Operation> =
@@ -34,7 +35,8 @@ struct CalculatorBrain {
             "+": Operation.binaryOperation({ $0 + $1 }),
             "-": Operation.binaryOperation({ $0 - $1 }),
             "%": Operation.binaryOperation({ $0.truncatingRemainder(dividingBy: $1) }),
-            "=": Operation.equals
+            "=": Operation.equals,
+            "C": Operation.clear
     ]
     
     
@@ -79,10 +81,13 @@ struct CalculatorBrain {
                 if operationUsedWhileResultIsPending {
                     removeEllipsesFromDescription()
                     description += " ="
+                    operationUsedWhileResultIsPending = false
                 } else if !description.contains("="){
                     removeEllipsesFromDescription()
                     description += " " + String(accumulator!) + " ="
                 }
+            case .clear:
+                description = ""
             }
         }
     }
@@ -108,8 +113,12 @@ struct CalculatorBrain {
                 }
             case .equals:
                 performPendingBinaryOperation()
-            }
             
+            case .clear:
+                resultIsPending = false
+                accumulator = 0
+                operationUsedWhileResultIsPending = false
+            }
         }
     }
     
@@ -123,7 +132,6 @@ struct CalculatorBrain {
     
     
     private var pendingBinaryOperation: PendingBinaryOperation?
-    
     private var resultIsPending = false
     private var operationUsedWhileResultIsPending = false
     
