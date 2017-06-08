@@ -11,7 +11,6 @@ import Foundation
 struct CalculatorBrain {
     
     private var accumulator: Double?
-    
     var description = ""
     
     private enum Operation {
@@ -38,22 +37,20 @@ struct CalculatorBrain {
             "=": Operation.equals
     ]
     
-    mutating func performOperation(_ symbol: String) {
+    
+    mutating func updateDescription(_ symbol: String){
         if let operation = operations[symbol]{
             switch operation {
-                
-            case .constant(let value):
+            case .constant:
                 if resultIsPending {
                     removeEllipsesFromDescription()
                     description += " " + symbol + " ..."
-                    accumulator = value
                     operationUsedWhileResultIsPending = true
                 } else {
                     description += symbol
-                    accumulator = value
                 }
                 
-            case .unaryOperation(let function):
+            case .unaryOperation:
                 if accumulator != nil {
                     if resultIsPending {
                         removeEllipsesFromDescription()
@@ -65,14 +62,10 @@ struct CalculatorBrain {
                         removeEqualSignFromDescription()
                         description = " " + symbol + "(" + description + ") ="
                     }
-                    
-                    accumulator = function(accumulator!)
-                    
                 }
                 
-            case .binaryOperation(let function):
+            case .binaryOperation:
                 if accumulator != nil {
-                    
                     if description.isEmpty {
                         description += String(accumulator!) + " " + symbol + " ..."
                     } else {
@@ -82,12 +75,7 @@ struct CalculatorBrain {
                         } else {
                             description += " " + symbol
                         }
-                    
                     }
-
-                    resultIsPending = true
-                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
-                    accumulator = nil
                 }
             case .equals:
                 if operationUsedWhileResultIsPending {
@@ -97,7 +85,30 @@ struct CalculatorBrain {
                     removeEllipsesFromDescription()
                     description += " " + String(accumulator!) + " ="
                 }
+            }
+        }
+    }
+    
+    mutating func performOperation(_ symbol: String) {
+        if let operation = operations[symbol]{
+            switch operation {
                 
+            case .constant(let value):
+                accumulator = value
+                
+            case .unaryOperation(let function):
+                if accumulator != nil {
+                    accumulator = function(accumulator!)
+                }
+                
+            case .binaryOperation(let function):
+                if accumulator != nil {
+                    
+                    resultIsPending = true
+                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    accumulator = nil
+                }
+            case .equals:
                 performPendingBinaryOperation()
             }
             

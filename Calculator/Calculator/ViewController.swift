@@ -56,6 +56,8 @@ class ViewController: UIViewController {
         }
         
         if let mathematicalSymbol = sender.currentTitle {
+            brain.updateDescription(mathematicalSymbol)
+
             brain.performOperation(mathematicalSymbol)
             displayDescription.text = brain.description
         }
