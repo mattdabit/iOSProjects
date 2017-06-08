@@ -58,7 +58,7 @@ struct CalculatorBrain {
                         removeEllipsesFromDescription()
                         description += " " + symbol +  "(" + String(accumulator!) + ") ..."
                         operationUsedWhileResultIsPending = true
-                    } else if description.isEmpty{
+                    } else if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty{
                         description = symbol + "(" + String(accumulator!) + ") ="
                     } else {
                         removeEqualSignFromDescription()
@@ -68,7 +68,7 @@ struct CalculatorBrain {
                 
             case .binaryOperation:
                 if accumulator != nil {
-                    if description.isEmpty {
+                    if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty {
                         description += String(accumulator!) + " " + symbol + " ..."
                     } else if description.contains("=") {
                         removeEqualSignFromDescription()
@@ -87,7 +87,7 @@ struct CalculatorBrain {
                     description += " " + String(accumulator!) + " ="
                 }
             case .clear:
-                description = ""
+                description = " "
             }
         }
     }
