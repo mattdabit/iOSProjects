@@ -51,8 +51,8 @@ struct CalculatorBrain {
                 if accumulator != nil {
                     if resultIsPending {
                         description = description.replacingOccurrences(of: " ...", with: "")
-                        
                         description += " " + symbol +  "(" + String(accumulator!) + ") ..."
+                        unaryOperationUsedWhileResultIsPending = true
                     } else if description.isEmpty{
                         description = symbol + "(" + String(accumulator!) + ")"
                     } else {
@@ -86,6 +86,14 @@ struct CalculatorBrain {
                     accumulator = nil
                 }
             case .equals:
+                if unaryOperationUsedWhileResultIsPending {
+                    description = description.replacingOccurrences(of: " ...", with: "")
+                    description += " ="
+                } else {
+                    description = description.replacingOccurrences(of: " ...", with: "")
+                    description += " " + String(accumulator!) + " ="
+                }
+                
                 performPendingBinaryOperation()
             }
             
@@ -94,9 +102,6 @@ struct CalculatorBrain {
     
     private mutating func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil{
-            description = description.replacingOccurrences(of: " ...", with: "")
-            description += " " + String(accumulator!) + " ="
-
             accumulator = pendingBinaryOperation!.perform(with: accumulator!)
             pendingBinaryOperation = nil
             resultIsPending = false
@@ -107,6 +112,7 @@ struct CalculatorBrain {
     private var pendingBinaryOperation: PendingBinaryOperation?
     
     private var resultIsPending = false
+    private var unaryOperationUsedWhileResultIsPending = false
     
     private struct PendingBinaryOperation {
         let function: (Double, Double) -> Double
@@ -119,6 +125,9 @@ struct CalculatorBrain {
     
     mutating func setOperand(_ operand: Double) {
         accumulator = operand
+        if description.contains("="){
+            description = ""
+        }
     }
     
     var result: Double? {
