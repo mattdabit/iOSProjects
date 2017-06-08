@@ -45,21 +45,21 @@ struct CalculatorBrain {
             case .constant(let value):
                 
                 description += symbol
-                print(description)
-
                 accumulator = value
                 
             case .unaryOperation(let function):
                 if accumulator != nil {
                     if resultIsPending {
-                        description += symbol +  "(" + String(accumulator!) + ")"
+                        description = description.replacingOccurrences(of: "...", with: "")
+                        
+                        description += symbol +  "(" + String(accumulator!) + ") ..."
                     } else if description.isEmpty{
                         description = symbol + "(" + String(accumulator!) + ")"
                     } else {
-                        description = " " + symbol + "(" + description + ")"
+                        description = description.replacingOccurrences(of: "=", with: "")
+                        description = " " + symbol + "(" + description + ") ="
                     }
                     
-                    print(description)
                     
                     accumulator = function(accumulator!)
                     
@@ -71,19 +71,22 @@ struct CalculatorBrain {
                     if description.isEmpty {
                         description += String(accumulator!) + " " + symbol + " ..."
                     } else {
-                        description += " " + symbol
-                    }
+                        if description.contains("=") {
+                            description = description.replacingOccurrences(of: "=", with: "")
+                            description += " " + symbol + " ... ="
+
+                        } else {
+                            description += " " + symbol
+                        }
                     
-                    print(description)
+                    }
 
                     resultIsPending = true
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
                     accumulator = nil
                 }
             case .equals:
-               
                 performPendingBinaryOperation()
-                print(description)
             }
             
         }
@@ -92,16 +95,24 @@ struct CalculatorBrain {
     private mutating func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil{
             
-            let range = description.index(description.endIndex, offsetBy: -3)..<description.endIndex
-            description.removeSubrange(range)
-            
-            description += String(accumulator!) + " =" 
+            if description.contains("=") && resultIsPending {
+                description = description.replacingOccurrences(of: "...", with: "")
+                description = description.replacingOccurrences(of: "=", with: "")
+                
+                description += String(accumulator!) + " ="
+                
+            } else {
+                description = description.replacingOccurrences(of: "...", with: "")
+                
+                description += String(accumulator!) + " ="
+            }
             
             accumulator = pendingBinaryOperation!.perform(with: accumulator!)
             pendingBinaryOperation = nil
             resultIsPending = false
         }
     }
+    
     
     private var pendingBinaryOperation: PendingBinaryOperation?
     
