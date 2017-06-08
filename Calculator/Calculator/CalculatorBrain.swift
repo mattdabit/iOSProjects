@@ -25,11 +25,15 @@ struct CalculatorBrain {
             "e": Operation.constant(M_E),
             "√": Operation.unaryOperation(sqrt),
             "cos": Operation.unaryOperation(cos),
+            "sin": Operation.unaryOperation(sin),
+            "tan": Operation.unaryOperation(tan),
             "±": Operation.unaryOperation({ -$0 }),
             "×": Operation.binaryOperation({ $0 * $1 }),
             "÷": Operation.binaryOperation({ $0 / $1 }),
             "+": Operation.binaryOperation({ $0 + $1 }),
             "-": Operation.binaryOperation({ $0 - $1 }),
+            "%": Operation.binaryOperation({ $0.truncatingRemainder(dividingBy: $1) }),
+
             "=": Operation.equals
         ]
     
