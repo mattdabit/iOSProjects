@@ -50,13 +50,13 @@ struct CalculatorBrain {
             case .unaryOperation(let function):
                 if accumulator != nil {
                     if resultIsPending {
-                        description = description.replacingOccurrences(of: "...", with: "")
+                        description = description.replacingOccurrences(of: " ...", with: "")
                         
-                        description += symbol +  "(" + String(accumulator!) + ") ..."
+                        description += " " + symbol +  "(" + String(accumulator!) + ") ..."
                     } else if description.isEmpty{
                         description = symbol + "(" + String(accumulator!) + ")"
                     } else {
-                        description = description.replacingOccurrences(of: "=", with: "")
+                        description = description.replacingOccurrences(of: " =", with: "")
                         description = " " + symbol + "(" + description + ") ="
                     }
                     
@@ -72,8 +72,8 @@ struct CalculatorBrain {
                         description += String(accumulator!) + " " + symbol + " ..."
                     } else {
                         if description.contains("=") {
-                            description = description.replacingOccurrences(of: "=", with: "")
-                            description += " " + symbol + " ... ="
+                            description = description.replacingOccurrences(of: " =", with: "")
+                            description += " " + symbol + " ..."
 
                         } else {
                             description += " " + symbol
@@ -94,19 +94,9 @@ struct CalculatorBrain {
     
     private mutating func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil{
-            
-            if description.contains("=") && resultIsPending {
-                description = description.replacingOccurrences(of: "...", with: "")
-                description = description.replacingOccurrences(of: "=", with: "")
-                
-                description += String(accumulator!) + " ="
-                
-            } else {
-                description = description.replacingOccurrences(of: "...", with: "")
-                
-                description += String(accumulator!) + " ="
-            }
-            
+            description = description.replacingOccurrences(of: " ...", with: "")
+            description += " " + String(accumulator!) + " ="
+
             accumulator = pendingBinaryOperation!.perform(with: accumulator!)
             pendingBinaryOperation = nil
             resultIsPending = false
