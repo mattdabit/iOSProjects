@@ -185,7 +185,8 @@ struct CalculatorBrain {
         -> (result: Double?, isPending: Bool, description: String){
             
             var isPending = false
-            
+            var operationUsedWhileResultIsPending = false
+
             var description = ""
             var result: Double?
             var pendingBinaryOperation: PendingBinaryOperation?
@@ -202,23 +203,25 @@ struct CalculatorBrain {
                             if isPending {
                                 description = description.replacingOccurrences(of: " ...", with: "")
                                 description += " " + operand + " ..."
-                                
+                                operationUsedWhileResultIsPending = true
                             } else {
                                 description += operand
                             }
                             
                         case .unaryOperation(let function):
-                            result = function(result!)
-                            if resultIsPending {
+                            if isPending {
                                 description = description.replacingOccurrences(of: " ...", with: "")
                                 description += " " + operand +  "(" + String(result!) + ") ..."
-                                
+                                operationUsedWhileResultIsPending = true
+
                             } else if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty{
                                 description = operand + "(" + String(result!) + ") ="
                             } else {
                                 description = description.replacingOccurrences(of: " =", with: "")
                                 description = " " + operand + "(" + description + ") ="
                             }
+                            result = function(result!)
+
                             
                         case .binaryOperation(let function):
                             pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
@@ -234,19 +237,29 @@ struct CalculatorBrain {
                             } else {
                                 description += " " + operand
                             }
-
                         
                             result = nil
                             isPending = true
                             
                         case .equals:
-                            result = pendingBinaryOperation!.perform(with: result!)
+                            
+                            if operationUsedWhileResultIsPending {
+                                description = description.replacingOccurrences(of: " ...", with: "")
+                                description += " ="
+                                operationUsedWhileResultIsPending = false
+                            } else if !description.contains("="){
+                                description = description.replacingOccurrences(of: " ...", with: "")
+                                description += " " + String(result!) + " ="
+                            }
+                            
                             isPending = false
+                            result = pendingBinaryOperation!.perform(with: result!)
+
                             
                         case .clear:
                             isPending = false
                             result = 0
-                            description = ""
+                            description = " "
                         }
                     } else {
                         result = Double(operand)
