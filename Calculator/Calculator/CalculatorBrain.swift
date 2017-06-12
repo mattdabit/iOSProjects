@@ -39,6 +39,7 @@ struct CalculatorBrain {
             "=": Operation.equals,
             "C": Operation.clear,
             "M": Operation.memory
+            
     ]
     
     
@@ -186,6 +187,7 @@ struct CalculatorBrain {
     
     mutating func setOperand(variable named: String){
         operands.append(named)
+        print("called with: \(named)")
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil)
@@ -246,8 +248,10 @@ struct CalculatorBrain {
         var description = ""
         var currentBinaryOperand :String?
         var isPending = false
+    
         for operand in operands {
             
+
             if let operation = operations[operand] {
                 switch operation {
     
@@ -273,28 +277,33 @@ struct CalculatorBrain {
                     currentBinaryOperand = operand
                     description = description.replacingOccurrences(of: " =", with: "")
                     description += " " + operand + " ..."
+                
                 case .equals:
                     isPending = false
                     description = description.replacingOccurrences(of: " ...", with: " \(operand)")
                     currentBinaryOperand = nil
-
                 case .clear:    
                     description = " "
                 case .memory:
-                    
+                        
                     if isPending {
                         description = description.replacingOccurrences(of: "...", with: "M ...")
                     } else {
                         description += " M"
                     }
+                    
                 }
             } else if isPending {
                 description = description.replacingOccurrences(of: " ...", with: " \(operand) ...")
-            } else if description.contains("=") {
+            
+            } else if description.contains("=") && !description.contains("M"){
                 description = operand
+                
             } else {
                 description += " " + operand
             }
+//            print(description)
+
         }
         return description
     }

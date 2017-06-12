@@ -48,6 +48,8 @@ class ViewController: UIViewController {
     
     private var brain = CalculatorBrain()
     
+    private var variables: Dictionary<String, Double>?
+    
     @IBAction func performOperation(_ sender: UIButton) {
         
         if userIsInTheMiddleOfTyping  {
@@ -59,7 +61,7 @@ class ViewController: UIViewController {
             brain.setOperand(variable: mathematicalSymbol)
         }
         
-        let results = brain.evaluate(using: nil)
+        let results = brain.evaluate(using: variables)
 
         if let result = results.result {
             displayValue = result
@@ -69,7 +71,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func performEvaluateWithVariables(_ sender: UIButton) {
-        let variables = ["M": displayValue]
+        variables = ["M": displayValue]
         let results = brain.evaluate(using: variables)
         
         if let result = results.result {
@@ -77,6 +79,8 @@ class ViewController: UIViewController {
         }
         
         displayDescription.text = results.description
+        userIsInTheMiddleOfTyping = false
+
     }
 
 }
