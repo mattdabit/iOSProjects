@@ -51,20 +51,21 @@ class ViewController: UIViewController {
     @IBAction func performOperation(_ sender: UIButton) {
         
         if userIsInTheMiddleOfTyping  {
-            brain.setOperand(displayValue)
+            brain.setOperand(variable: String(displayValue))
             userIsInTheMiddleOfTyping = false
         }
         
         if let mathematicalSymbol = sender.currentTitle {
-            brain.updateDescription(mathematicalSymbol)
-
-            brain.performOperation(mathematicalSymbol)
-            displayDescription.text = brain.description
+            brain.setOperand(variable: mathematicalSymbol)
         }
         
-        if let result = brain.result {
+        let results = brain.evaluate(using: nil)
+
+        if let result = results.result {
             displayValue = result
         }
+        
+        displayDescription.text = results.description
     }
 }
 

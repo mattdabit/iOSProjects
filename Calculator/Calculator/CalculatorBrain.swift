@@ -171,4 +171,92 @@ struct CalculatorBrain {
     private mutating func removeEqualSignFromDescription(){
         description = description.replacingOccurrences(of: " =", with: "")
     }
+    
+    
+    //Assignment 2
+    
+    var operands = [String]()
+    
+    mutating func setOperand(variable named: String){
+        operands.append(named)
+    }
+    
+    func evaluate(using variables: Dictionary<String,Double>? = nil)
+        -> (result: Double?, isPending: Bool, description: String){
+            
+            var isPending = false
+            
+            var description = ""
+            var result: Double?
+            var pendingBinaryOperation: PendingBinaryOperation?
+            
+            if variables != nil {
+                print("ble")
+            } else {
+                for operand in operands {
+                    if let operation = operations[operand] {
+                        switch operation {
+                            
+                        case .constant(let value):
+                            result = value
+                            if isPending {
+                                description = description.replacingOccurrences(of: " ...", with: "")
+                                description += " " + operand + " ..."
+                                
+                            } else {
+                                description += operand
+                            }
+                            
+                        case .unaryOperation(let function):
+                            result = function(result!)
+                            if resultIsPending {
+                                description = description.replacingOccurrences(of: " ...", with: "")
+                                description += " " + operand +  "(" + String(result!) + ") ..."
+                                
+                            } else if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty{
+                                description = operand + "(" + String(result!) + ") ="
+                            } else {
+                                description = description.replacingOccurrences(of: " =", with: "")
+                                description = " " + operand + "(" + description + ") ="
+                            }
+                            
+                        case .binaryOperation(let function):
+                            pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
+                            
+                            if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty {
+                                description += String(result!) + " " + operand + " ..."
+                            } else if description.contains("=") {
+                                description = description.replacingOccurrences(of: " =", with: "")
+                                description += " " + operand + " ..."
+                            } else if resultIsPending {
+                                description = description.replacingOccurrences(of: " ...", with: "")
+                                description += " " + String(result!) + " " + operand + " ..."
+                            } else {
+                                description += " " + operand
+                            }
+
+                        
+                            result = nil
+                            isPending = true
+                            
+                        case .equals:
+                            result = pendingBinaryOperation!.perform(with: result!)
+                            isPending = false
+                            
+                        case .clear:
+                            isPending = false
+                            result = 0
+                            description = ""
+                        }
+                    } else {
+                        result = Double(operand)
+                    }
+                }
+                
+            }
+            
+            
+            return (result, isPending, description)
+    }
+    
 }
