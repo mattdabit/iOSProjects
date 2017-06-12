@@ -305,4 +305,10 @@ struct CalculatorBrain {
         }
         return description
     }
+    
+    mutating func undo(){
+        if !operands.isEmpty{
+            let _ = operands.removeLast()
+        }
+    }
 }

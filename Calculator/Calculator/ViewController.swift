@@ -87,8 +87,18 @@ class ViewController: UIViewController {
         
         displayDescription.text = results.description
         userIsInTheMiddleOfTyping = false
-
     }
 
+    @IBAction func undoOperation(_ sender: UIButton) {
+        brain.undo()
+        let results = brain.evaluate(using: variables)
+        
+        if let result = results.result {
+            displayValue = result
+        }
+        
+        displayDescription.text = results.description
+        
+    }
 }
 
