@@ -67,5 +67,17 @@ class ViewController: UIViewController {
         
         displayDescription.text = results.description
     }
+    
+    @IBAction func performEvaluateWithVariables(_ sender: UIButton) {
+        let variables = ["M": displayValue]
+        let results = brain.evaluate(using: variables)
+        
+        if let result = results.result {
+            displayValue = result
+        }
+        
+        displayDescription.text = results.description
+    }
+
 }
 

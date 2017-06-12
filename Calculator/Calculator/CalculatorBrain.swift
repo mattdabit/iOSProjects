@@ -17,6 +17,7 @@ struct CalculatorBrain {
         case constant(Double)
         case unaryOperation((Double) -> Double)
         case binaryOperation((Double, Double) -> Double)
+        case memory
         case equals
         case clear
     }
@@ -36,7 +37,8 @@ struct CalculatorBrain {
             "-": Operation.binaryOperation({ $0 - $1 }),
             "%": Operation.binaryOperation({ $0.truncatingRemainder(dividingBy: $1) }),
             "=": Operation.equals,
-            "C": Operation.clear
+            "C": Operation.clear,
+            "M": Operation.memory
     ]
     
     
@@ -91,6 +93,9 @@ struct CalculatorBrain {
                 }
             case .clear:
                 description = " "
+            
+            case .memory:
+                break
             }
         }
     }
@@ -124,6 +129,8 @@ struct CalculatorBrain {
                 resultIsPending = false
                 accumulator = 0
                 operationUsedWhileResultIsPending = false
+            case .memory:
+                break
             }
         }
     }
@@ -185,101 +192,110 @@ struct CalculatorBrain {
         -> (result: Double?, isPending: Bool, description: String){
             
             var isPending = false
-            var operationUsedWhileResultIsPending = false
-
-            var description = ""
+            let description = buildDescription()
             var result: Double?
             var pendingBinaryOperation: PendingBinaryOperation?
-           
+            
+            
             for operand in operands {
                 if let operation = operations[operand] {
                     switch operation {
                         
                     case .constant(let value):
                         result = value
-                        if isPending {
-                            description = description.replacingOccurrences(of: " ...", with: "")
-                            description += " " + operand + " ..."
-                            operationUsedWhileResultIsPending = true
-                        } else {
-                            description += operand
-                        }
                         
                     case .unaryOperation(let function):
-                        if isPending {
-                            description = description.replacingOccurrences(of: " ...", with: "")
-                            description += " " + operand +  "(" + String(result!) + ") ..."
-                            operationUsedWhileResultIsPending = true
-                        } else if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty{
-                            description = operand + "(" + String(result!) + ") ="
-                        } else {
-                            description = description.replacingOccurrences(of: " =", with: "")
-                            description = " " + operand + "(" + description + ") ="
-                        }
-                        
                         result = function(result!)
                         
-                        
                     case .binaryOperation(let function):
+
                         pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
-                        
-                        if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty {
-                            description += String(result!) + " " + operand + " ..."
-                        } else if description.contains("=") {
-                            description = description.replacingOccurrences(of: " =", with: "")
-                            description += " " + operand + " ..."
-                        } else if isPending {
-                            description = description.replacingOccurrences(of: " ...", with: "")
-                            description += " " + String(result!) + " " + operand + " ..."
-                        } else {
-                            description += " " + operand
-                        }
-                        
                         result = nil
                         isPending = true
                         
                     case .equals:
-                        
-                        if operationUsedWhileResultIsPending {
-                            description = description.replacingOccurrences(of: " ...", with: "")
-                            description += " ="
-                            operationUsedWhileResultIsPending = false
-                        } else if !description.contains("="){
-                            description = description.replacingOccurrences(of: " ...", with: "")
-                            description += " " + String(result!) + " ="
-                        }
-                        
+                       
                         isPending = false
                         result = pendingBinaryOperation!.perform(with: result!)
                         
-                        
                     case .clear:
+                        
                         isPending = false
                         result = 0
-                        description = " "
-                    }
-                    
-                } else if let variableValue = variables?[operand] {
-                    if variableValue == nil {
-                        variableValue = 0
-                    }
-                    
-                    result = variableValue
-                    
-                    if description.contains("="){
-                        description = ""
-                    }
-                    
-                } else {
-                    result = Double(operand)
-                    if description.contains("="){
-                        description = ""
+        
+                    case .memory:
+                        
+                        if variables?[operand] == nil{
+                            result = 0
+                        } else {
+                            result = variables?[operand]
+                        }
                     }
                 }
+                    
+                if let operandValue = Double(operand) {
+                    result = operandValue
+                }
             }
-    
-    
+        
             return (result, isPending, description)
     }
 
+    
+    private func buildDescription() -> String {
+        var description = ""
+        var currentBinaryOperand :String?
+        var isPending = false
+        for operand in operands {
+            
+            if let operation = operations[operand] {
+                switch operation {
+    
+                case .constant:
+                    description = description.replacingOccurrences(of: " =", with: "")
+
+                    if isPending {
+                        description = description.replacingOccurrences(of: " ...", with: "\(operand) ...")
+                    } else {
+                        description += " " + operand
+                    }
+                case .unaryOperation:
+                    if isPending {
+                        description = description.replacingOccurrences(of: "\(currentBinaryOperand!) ", with: "\(currentBinaryOperand!) \(operand)(")
+                        description = description.replacingOccurrences(of: " ...", with: ") ...")
+                    } else {
+                        description = description.replacingOccurrences(of: " =", with: "")
+                        description = "\(operand)(\(description)) ="
+                    }
+                case .binaryOperation:
+                   
+                    isPending = true
+                    currentBinaryOperand = operand
+                    description = description.replacingOccurrences(of: " =", with: "")
+                    description += " " + operand + " ..."
+                case .equals:
+                    isPending = false
+                    description = description.replacingOccurrences(of: " ...", with: " \(operand)")
+                    currentBinaryOperand = nil
+
+                case .clear:    
+                    description = " "
+                case .memory:
+                    
+                    if isPending {
+                        description = description.replacingOccurrences(of: "...", with: "M ...")
+                    } else {
+                        description += " M"
+                    }
+                }
+            } else if isPending {
+                description = description.replacingOccurrences(of: " ...", with: " \(operand) ...")
+            } else if description.contains("=") {
+                description = operand
+            } else {
+                description += " " + operand
+            }
+        }
+        return description
+    }
 }
