@@ -187,7 +187,6 @@ struct CalculatorBrain {
     
     mutating func setOperand(variable named: String){
         operands.append(named)
-        print("called with: \(named)")
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil)
@@ -302,7 +301,6 @@ struct CalculatorBrain {
             } else {
                 description += " " + operand
             }
-//            print(description)
 
         }
         return description
