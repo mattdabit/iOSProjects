@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayDescription: UILabel!
     
+    @IBOutlet weak var displayMemory: UILabel!
+    
     var userIsInTheMiddleOfTyping = false
 
     @IBAction func touchDot(_ sender: UIButton) {
@@ -72,6 +74,7 @@ class ViewController: UIViewController {
     
     @IBAction func performEvaluateWithVariables(_ sender: UIButton) {
         variables = ["M": displayValue]
+        displayMemory.text = "M: \(displayValue)"
         let results = brain.evaluate(using: variables)
         
         if let result = results.result {
