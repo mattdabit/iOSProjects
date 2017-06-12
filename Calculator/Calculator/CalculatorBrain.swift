@@ -213,13 +213,13 @@ struct CalculatorBrain {
                                 description = description.replacingOccurrences(of: " ...", with: "")
                                 description += " " + operand +  "(" + String(result!) + ") ..."
                                 operationUsedWhileResultIsPending = true
-
                             } else if description.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty{
                                 description = operand + "(" + String(result!) + ") ="
                             } else {
                                 description = description.replacingOccurrences(of: " =", with: "")
                                 description = " " + operand + "(" + description + ") ="
                             }
+                            
                             result = function(result!)
 
                             
@@ -231,7 +231,7 @@ struct CalculatorBrain {
                             } else if description.contains("=") {
                                 description = description.replacingOccurrences(of: " =", with: "")
                                 description += " " + operand + " ..."
-                            } else if resultIsPending {
+                            } else if isPending {
                                 description = description.replacingOccurrences(of: " ...", with: "")
                                 description += " " + String(result!) + " " + operand + " ..."
                             } else {
@@ -263,6 +263,9 @@ struct CalculatorBrain {
                         }
                     } else {
                         result = Double(operand)
+                        if description.contains("="){
+                            description = ""
+                        }
                     }
                 }
                 
