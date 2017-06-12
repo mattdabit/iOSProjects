@@ -17,7 +17,6 @@ struct CalculatorBrain {
         case constant(Double)
         case unaryOperation((Double) -> Double)
         case binaryOperation((Double, Double) -> Double)
-        case memory
         case equals
         case clear
     }
@@ -37,9 +36,8 @@ struct CalculatorBrain {
             "-": Operation.binaryOperation({ $0 - $1 }),
             "%": Operation.binaryOperation({ $0.truncatingRemainder(dividingBy: $1) }),
             "=": Operation.equals,
-            "C": Operation.clear,
-            "M": Operation.memory
-            
+            "C": Operation.clear
+        
     ]
     
     
@@ -94,9 +92,7 @@ struct CalculatorBrain {
                 }
             case .clear:
                 description = " "
-            
-            case .memory:
-                break
+
             }
         }
     }
@@ -130,8 +126,7 @@ struct CalculatorBrain {
                 resultIsPending = false
                 accumulator = 0
                 operationUsedWhileResultIsPending = false
-            case .memory:
-                break
+            
             }
         }
     }
@@ -220,23 +215,20 @@ struct CalculatorBrain {
                         result = pendingBinaryOperation!.perform(with: result!)
                         
                     case .clear:
-                        
                         isPending = false
                         result = 0
-        
-                    case .memory:
-                        
-                        if variables?[operand] == nil{
-                            result = 0
-                        } else {
-                            result = variables?[operand]
-                        }
                     }
-                }
                     
-                if let operandValue = Double(operand) {
+                } else if let operandValue = Double(operand) {
                     result = operandValue
+                    
+                } else if variables?[operand] == nil{
+                    result = 0
+                    
+                } else {
+                    result = variables?[operand]
                 }
+                
             }
         
             return (result, isPending, description)
@@ -283,23 +275,16 @@ struct CalculatorBrain {
                     currentBinaryOperand = nil
                 case .clear:    
                     description = " "
-                case .memory:
-                        
-                    if isPending {
-                        description = description.replacingOccurrences(of: "...", with: "M ...")
-                    } else {
-                        description += " M"
-                    }
                     
                 }
             } else if isPending {
                 description = description.replacingOccurrences(of: " ...", with: " \(operand) ...")
             
-            } else if description.contains("=") && !description.contains("M"){
+            } else if description.contains("=") {
                 description = operand
                 
             } else {
-                description += " " + operand
+                description += " \(operand)"
             }
 
         }
