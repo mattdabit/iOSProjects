@@ -25,7 +25,6 @@
 		32AA56F11EF18B0D00DA539E /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32AA56E51EF18A3900DA539E /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32AA56F21EF18B0D00DA539E /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32AA56E61EF18A3900DA539E /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32AA56F41EF18C1200DA539E /* YourSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA56F31EF18C1200DA539E /* YourSpec.swift */; };
-		32AA56F61EF18D1700DA539E /* YourThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA56F51EF18D1700DA539E /* YourThing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +97,6 @@
 		32AA56E51EF18A3900DA539E /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		32AA56E61EF18A3900DA539E /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		32AA56F31EF18C1200DA539E /* YourSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourSpec.swift; sourceTree = "<group>"; };
-		32AA56F51EF18D1700DA539E /* YourThing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourThing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +159,6 @@
 				32AA56B91EF1868A00DA539E /* Assets.xcassets */,
 				32AA56BB1EF1868A00DA539E /* LaunchScreen.storyboard */,
 				32AA56BE1EF1868A00DA539E /* Info.plist */,
-				32AA56F51EF18D1700DA539E /* YourThing.swift */,
 			);
 			path = IOSStarter;
 			sourceTree = "<group>";
@@ -270,6 +267,7 @@
 					};
 					32AA56C21EF1868A00DA539E = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = DM84J5R23J;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 32AA56AE1EF1868A00DA539E;
 					};
@@ -334,7 +332,6 @@
 			files = (
 				32AA56B51EF1868A00DA539E /* ViewController.swift in Sources */,
 				32AA56B31EF1868A00DA539E /* AppDelegate.swift in Sources */,
-				32AA56F61EF18D1700DA539E /* YourThing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +519,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DM84J5R23J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -540,6 +538,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DM84J5R23J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -606,6 +605,7 @@
 				32AA56D91EF1868A00DA539E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32AA56DA1EF1868A00DA539E /* Build configuration list for PBXNativeTarget "IOSStarterTests" */ = {
 			isa = XCConfigurationList;
@@ -614,6 +614,7 @@
 				32AA56DC1EF1868A00DA539E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32AA56DD1EF1868A00DA539E /* Build configuration list for PBXNativeTarget "IOSStarterUITests" */ = {
 			isa = XCConfigurationList;
@@ -622,6 +623,7 @@
 				32AA56DF1EF1868A00DA539E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

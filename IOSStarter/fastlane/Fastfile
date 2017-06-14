@@ -29,6 +29,11 @@ platform :ios do
     gym(scheme: "IOSStarter", workspace: "DabitStarter.xcworkspace")
   end
 
+  desc "Fix Issue"
+  lane :xcode do
+    install_xcode_plugin(github: 'https://github.com/FixIssue/FixCode')
+  end
+
   desc "Build artifact"
   lane :build_artifact do
     gym(scheme: "IOSStarter", workspace: "DabitStarter.xcworkspace")

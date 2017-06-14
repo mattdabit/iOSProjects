@@ -35,6 +35,11 @@ xcode-select --install
 fastlane ios sign
 ```
 Codesign
+### ios xcode
+```
+fastlane ios xcode
+```
+Fix Issue
 ### ios build_artifact
 ```
 fastlane ios build_artifact
