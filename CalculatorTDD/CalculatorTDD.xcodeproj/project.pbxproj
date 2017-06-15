@@ -12,20 +12,16 @@
 		32BF91491EF31AC900CEE955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BF91471EF31AC900CEE955 /* Main.storyboard */; };
 		32BF914B1EF31AC900CEE955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32BF914A1EF31AC900CEE955 /* Assets.xcassets */; };
 		32BF914E1EF31AC900CEE955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32BF914C1EF31AC900CEE955 /* LaunchScreen.storyboard */; };
-		32BF91641EF31ACA00CEE955 /* CalculatorTDDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF91631EF31ACA00CEE955 /* CalculatorTDDUITests.swift */; };
 		32BF91751EF31C6600CEE955 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BF91741EF31C6600CEE955 /* Alamofire.framework */; };
 		32BF91771EF31C7600CEE955 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32BF91741EF31C6600CEE955 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32BF917A1EF31C8A00CEE955 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BF91781EF31C8A00CEE955 /* Nimble.framework */; };
 		32BF917B1EF31C8A00CEE955 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BF91791EF31C8A00CEE955 /* Quick.framework */; };
 		32BF917D1EF31C9700CEE955 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32BF91781EF31C8A00CEE955 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32BF917E1EF31C9700CEE955 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32BF91791EF31C8A00CEE955 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		32BF917F1EF31CA500CEE955 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BF91781EF31C8A00CEE955 /* Nimble.framework */; };
-		32BF91801EF31CA500CEE955 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BF91791EF31C8A00CEE955 /* Quick.framework */; };
-		32BF91821EF31CB100CEE955 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32BF91781EF31C8A00CEE955 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		32BF91831EF31CB100CEE955 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32BF91791EF31C8A00CEE955 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32BF91851EF31E6200CEE955 /* ViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF91841EF31E6200CEE955 /* ViewControllerSpec.swift */; };
 		32BF91871EF31F4600CEE955 /* CalculatorBrainSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF91861EF31F4600CEE955 /* CalculatorBrainSpec.swift */; };
 		32BF91891EF31F5500CEE955 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF91881EF31F5500CEE955 /* CalculatorBrain.swift */; };
+		32BF918B1EF3254000CEE955 /* CalculatorUISpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BF918A1EF3254000CEE955 /* CalculatorUISpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +69,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 11;
 			files = (
-				32BF91821EF31CB100CEE955 /* Nimble.framework in CopyFiles */,
-				32BF91831EF31CB100CEE955 /* Quick.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +85,6 @@
 		32BF91541EF31AC900CEE955 /* CalculatorTDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTDDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BF915A1EF31AC900CEE955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32BF915F1EF31AC900CEE955 /* CalculatorTDDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorTDDUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		32BF91631EF31ACA00CEE955 /* CalculatorTDDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTDDUITests.swift; sourceTree = "<group>"; };
 		32BF91651EF31ACA00CEE955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32BF91741EF31C6600CEE955 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		32BF91781EF31C8A00CEE955 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
@@ -99,6 +92,7 @@
 		32BF91841EF31E6200CEE955 /* ViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSpec.swift; sourceTree = "<group>"; };
 		32BF91861EF31F4600CEE955 /* CalculatorBrainSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrainSpec.swift; sourceTree = "<group>"; };
 		32BF91881EF31F5500CEE955 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
+		32BF918A1EF3254000CEE955 /* CalculatorUISpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorUISpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +117,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32BF917F1EF31CA500CEE955 /* Nimble.framework in Frameworks */,
-				32BF91801EF31CA500CEE955 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +128,7 @@
 			children = (
 				32BF91421EF31AC900CEE955 /* CalculatorTDD */,
 				32BF91571EF31AC900CEE955 /* CalculatorTDDTests */,
-				32BF91621EF31AC900CEE955 /* CalculatorTDDUITests */,
+				32BF91621EF31AC900CEE955 /* CalculatorUITests */,
 				32BF91411EF31AC900CEE955 /* Products */,
 				32BF91731EF31C6600CEE955 /* Frameworks */,
 			);
@@ -155,10 +147,9 @@
 		32BF91421EF31AC900CEE955 /* CalculatorTDD */ = {
 			isa = PBXGroup;
 			children = (
-				32BF91721EF31AF100CEE955 /* Extra */,
+				32BF91721EF31AF100CEE955 /* Support */,
 				32BF91451EF31AC900CEE955 /* ViewController.swift */,
 				32BF91471EF31AC900CEE955 /* Main.storyboard */,
-				32BF914A1EF31AC900CEE955 /* Assets.xcassets */,
 				32BF91881EF31F5500CEE955 /* CalculatorBrain.swift */,
 			);
 			path = CalculatorTDD;
@@ -174,23 +165,25 @@
 			path = CalculatorTDDTests;
 			sourceTree = "<group>";
 		};
-		32BF91621EF31AC900CEE955 /* CalculatorTDDUITests */ = {
+		32BF91621EF31AC900CEE955 /* CalculatorUITests */ = {
 			isa = PBXGroup;
 			children = (
-				32BF91631EF31ACA00CEE955 /* CalculatorTDDUITests.swift */,
 				32BF91651EF31ACA00CEE955 /* Info.plist */,
+				32BF918A1EF3254000CEE955 /* CalculatorUISpec.swift */,
 			);
+			name = CalculatorUITests;
 			path = CalculatorTDDUITests;
 			sourceTree = "<group>";
 		};
-		32BF91721EF31AF100CEE955 /* Extra */ = {
+		32BF91721EF31AF100CEE955 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				32BF914A1EF31AC900CEE955 /* Assets.xcassets */,
 				32BF91431EF31AC900CEE955 /* AppDelegate.swift */,
 				32BF914C1EF31AC900CEE955 /* LaunchScreen.storyboard */,
 				32BF914F1EF31AC900CEE955 /* Info.plist */,
 			);
-			name = Extra;
+			name = Support;
 			sourceTree = "<group>";
 		};
 		32BF91731EF31C6600CEE955 /* Frameworks */ = {
@@ -287,6 +280,7 @@
 					32BF915E1EF31AC900CEE955 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = DM84J5R23J;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 32BF913F1EF31AC900CEE955;
 					};
@@ -363,7 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32BF91641EF31ACA00CEE955 /* CalculatorTDDUITests.swift in Sources */,
+				32BF918B1EF3254000CEE955 /* CalculatorUISpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = DM84J5R23J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -585,6 +580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.thoughtworks.dabit.CalculatorTDDUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = CalculatorTDD;
 			};
@@ -594,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = DM84J5R23J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

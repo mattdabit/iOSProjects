@@ -1,6 +1,6 @@
 //
-//  CalculatorTDDUITests.swift
-//  CalculatorTDDUITests
+//  CalculatorUISpec.swift
+//  CalculatorTDD
 //
 //  Created by Matthew Dabit on 6/15/17.
 //  Copyright © 2017 Matthew Dabit. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class CalculatorTDDUITests: XCTestCase {
+class CalculatorUISpec: XCTestCase {
         
     override func setUp() {
         super.setUp()
@@ -24,13 +24,16 @@ class CalculatorTDDUITests: XCTestCase {
     }
     
     override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func labelShouldChangeTo1() {
+    func shouldUpdateLabelTo1() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
+        let app = XCUIApplication()
+        app.buttons["1"].tap()
+        XCTAssert(app.staticTexts["1.0"].exists)
     }
     
 }

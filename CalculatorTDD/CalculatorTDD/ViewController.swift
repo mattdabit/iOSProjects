@@ -9,6 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let brain = CalculatorBrain()
+//    let brain = CalculatorBrain()
+    
+    @IBOutlet weak var display: UILabel!
+    
+    @IBAction func touchDigit(_ sender: UIButton) {
+        print(sender.currentTitle!)
+        display.text = "1.0"
+    }
 }
 
