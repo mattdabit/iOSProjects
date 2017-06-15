@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3206AE1B1EF2D9A8000BA48F /* ViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3206AE1A1EF2D9A8000BA48F /* ViewControllerSpec.swift */; };
 		3242F4451EF1C55A00AD3D55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3242F4441EF1C55A00AD3D55 /* AppDelegate.swift */; };
 		3242F4471EF1C55A00AD3D55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3242F4461EF1C55A00AD3D55 /* ViewController.swift */; };
 		3242F44A1EF1C55A00AD3D55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3242F4481EF1C55A00AD3D55 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3206AE1A1EF2D9A8000BA48F /* ViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSpec.swift; sourceTree = "<group>"; };
 		3242F4411EF1C55A00AD3D55 /* FizzBuzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FizzBuzz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242F4441EF1C55A00AD3D55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3242F4461EF1C55A00AD3D55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				3242F45B1EF1C55A00AD3D55 /* Info.plist */,
 				3242F4721EF1C5A200AD3D55 /* FizzBuzzSpec.swift */,
 				3242F4871EF1D76F00AD3D55 /* GameSpec.swift */,
+				3206AE1A1EF2D9A8000BA48F /* ViewControllerSpec.swift */,
 			);
 			path = FizzBuzzTests;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3206AE1B1EF2D9A8000BA48F /* ViewControllerSpec.swift in Sources */,
 				3242F4731EF1C5A200AD3D55 /* FizzBuzzSpec.swift in Sources */,
 				3242F4881EF1D76F00AD3D55 /* GameSpec.swift in Sources */,
 			);
