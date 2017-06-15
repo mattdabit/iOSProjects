@@ -28,12 +28,19 @@ class CalculatorUISpec: XCTestCase {
         super.tearDown()
     }
     
-    func shouldUpdateLabelTo1() {
+    func testShouldUpdateLabelTo1() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let app = XCUIApplication()
         app.buttons["1"].tap()
-        XCTAssert(app.staticTexts["1.0"].exists)
+        XCTAssert(app.staticTexts["1"].exists)
     }
     
+    func testShouldUpdateLabelTo10() {
+        let app = XCUIApplication()
+        app.buttons["1"].tap()
+        app.buttons["0"].tap()
+        
+        XCTAssert(app.staticTexts["10"].exists)
+    }
 }

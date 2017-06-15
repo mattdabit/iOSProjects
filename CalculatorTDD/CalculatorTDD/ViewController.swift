@@ -9,13 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-//    let brain = CalculatorBrain()
+    let brain = CalculatorBrain()
     
     @IBOutlet weak var display: UILabel!
     
+    var userInTheMiddleOfTyping = false
+    
     @IBAction func touchDigit(_ sender: UIButton) {
-        print(sender.currentTitle!)
-        display.text = "1.0"
+        let digit = sender.currentTitle!
+        
+        if userInTheMiddleOfTyping {
+            let textCurrentlyInDisplay = display.text!
+            display.text = textCurrentlyInDisplay + digit
+        } else {
+            display.text = digit
+            userInTheMiddleOfTyping = true
+        }
     }
 }
 
