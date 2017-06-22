@@ -43,4 +43,12 @@ class CalculatorUISpec: XCTestCase {
         
         XCTAssert(app.staticTexts["10"].exists)
     }
+    
+    func testShouldDisplaySqrtOfValue(){
+        let app = XCUIApplication()
+        app.buttons["4"].tap()
+        app.buttons["√"].tap()
+        
+        XCTAssert(app.staticTexts["2"].exists)
+    }
 }
