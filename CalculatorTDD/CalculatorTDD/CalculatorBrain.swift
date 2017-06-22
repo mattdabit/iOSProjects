@@ -15,6 +15,8 @@ struct CalculatorBrain {
         case constant(Double)
         case binaryOperation((Double, Double) -> Double)
         case equal
+        case clear
+
     }
     
     private var operations: Dictionary<String, Operation> =
@@ -31,7 +33,8 @@ struct CalculatorBrain {
             "-": Operation.binaryOperation(-),
             "×": Operation.binaryOperation(*),
             "÷": Operation.binaryOperation(/),
-            "=": Operation.equal
+            "=": Operation.equal,
+            "C": Operation.clear
         ]
     
     var operands = [String]()
@@ -63,6 +66,9 @@ struct CalculatorBrain {
 
                 case .equal:
                     result = pendingBinaryOperation!.perform(secondOperand: result!)
+                    
+                case .clear:
+                    result = 0
                 }
                 
             } else if let operandValue = Double(operand) {

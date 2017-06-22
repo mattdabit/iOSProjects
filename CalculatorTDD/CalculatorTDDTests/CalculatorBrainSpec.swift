@@ -147,6 +147,19 @@ class CalculatorBrainSpec: QuickSpec {
                         expect(result).to(equal(2))
                     }
                 }
+                
+                context("clear"){
+                    it("should return 0 as result"){
+                        brain.setOperand("4")
+                        brain.setOperand("÷")
+                        brain.setOperand("2")
+                        brain.setOperand("=")
+                        brain.setOperand("C")
+                        
+                        let result = brain.evaluate()
+                        expect(result).to(equal(0))
+                    }
+                }
             }
         }
     }

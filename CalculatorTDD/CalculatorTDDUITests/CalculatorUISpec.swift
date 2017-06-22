@@ -33,73 +33,63 @@ class CalculatorUISpec: XCTestCase {
         super.tearDown()
     }
     
-    func testShouldUpdateLabelTo1() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
+    func testShouldUpdateLabel() {
+
         let app = XCUIApplication()
         
         app.buttons["1"].tap()
-        
         snapshot("Entered 1")
-
         XCTAssert(app.staticTexts["1"].exists)
-    }
-    
-    func testShouldUpdateLabelTo10() {
-        let app = XCUIApplication()
         
-        app.buttons["1"].tap()
         app.buttons["0"].tap()
-        
         snapshot("Entered 10")
-
         XCTAssert(app.staticTexts["10"].exists)
-    }
-    
-    func testShouldUpdateLabelTo1Dot4() {
-        let app = XCUIApplication()
         
-        app.buttons["1"].tap()
+        
+        app.buttons["C"].tap()
         app.buttons["."].tap()
         app.buttons["4"].tap()
-
-        snapshot("Entered 1.4")
         
-        XCTAssert(app.staticTexts["1.4"].exists)
+        snapshot("Entered 0.4")
+        
+        XCTAssert(app.staticTexts["0.4"].exists)
     }
     
     
-    func testShouldDisplaySqrtOfValue(){
+    func testShouldCalculateUnaryOperations(){
         let app = XCUIApplication()
         
         app.buttons["4"].tap()
         app.buttons["√"].tap()
-        
         snapshot("Sqrt of 4")
-
         XCTAssert(app.staticTexts["2"].exists)
-    }
-    
-    func testShouldDisplaySquareOfValue(){
         
-        let app = XCUIApplication()
+        app.buttons["C"].tap()
         app.buttons["4"].tap()
         app.buttons["x²"].tap()
-        
         snapshot("Square of 4")
-        
         XCTAssert(app.staticTexts["16"].exists)
-    }
-    
-    func testShouldDisplayNegativeOfNumber(){
         
-        let app = XCUIApplication()
+        app.buttons["C"].tap()
         app.buttons["4"].tap()
         app.buttons["±"].tap()
-        
         snapshot("Negative of 4")
         XCTAssert(app.staticTexts["-4"].exists)
+        
+        app.buttons["C"].tap()
+        app.buttons["sin"].tap()
+        snapshot("sin(0)")
+        XCTAssert(app.staticTexts["0"].exists)
+        
+        app.buttons["C"].tap()
+        app.buttons["cos"].tap()
+        snapshot("cos(0)")
+        XCTAssert(app.staticTexts["1"].exists)
+        
+        app.buttons["C"].tap()
+        app.buttons["tan"].tap()
+        snapshot("tan(0)")
+        XCTAssert(app.staticTexts["0"].exists)
     }
     
     func testShouldDisplayConstants() {
@@ -108,22 +98,17 @@ class CalculatorUISpec: XCTestCase {
         app.buttons["π"].tap()
         
         snapshot("π value")
-
         
         XCTAssert(app.staticTexts[String(Double.pi)].exists)
         
-    }
-    
-    func testShouldDisplayE() {
-        
-        let app = XCUIApplication()
+        app.buttons["C"].tap()
         app.buttons["e"].tap()
         
         snapshot("e value")
         XCTAssert(app.staticTexts[String(M_E)].exists)
     }
-    
-    func testShouldAddTwoValues(){
+ 
+    func testShouldCalculateBinaryOperations(){
         
         let app = XCUIApplication()
         app.buttons["4"].tap()
@@ -131,57 +116,42 @@ class CalculatorUISpec: XCTestCase {
         app.buttons["5"].tap()
         app.buttons["="].tap()
         snapshot("4 + 5")
-
         XCTAssert(app.staticTexts["9"].exists)
-    }
-    
-    func testShouldMultiplyTwoValues(){
         
-        let app = XCUIApplication()
+        app.buttons["C"].tap()
         app.buttons["4"].tap()
         app.buttons["×"].tap()
         app.buttons["5"].tap()
         app.buttons["="].tap()
         snapshot("4 × 5")
-
         XCTAssert(app.staticTexts["20"].exists)
-    }
-    
-    func testShouldSubtractTwoValues(){
         
-        let app = XCUIApplication()
+        app.buttons["C"].tap()
         app.buttons["6"].tap()
         app.buttons["-"].tap()
         app.buttons["5"].tap()
         app.buttons["="].tap()
         snapshot("6 - 5")
-
         XCTAssert(app.staticTexts["1"].exists)
-    }
-    
-    func testShouldDivideTwoValues(){
         
-        let app = XCUIApplication()
+        app.buttons["C"].tap()
         app.buttons["1"].tap()
         app.buttons["5"].tap()
-
         app.buttons["÷"].tap()
         app.buttons["5"].tap()
         app.buttons["="].tap()
         snapshot("15 ÷ 5")
-
         XCTAssert(app.staticTexts["3"].exists)
     }
     
-    func testShouldGetSineOf0(){
+    func testShouldClearTheDisplay(){
         
         let app = XCUIApplication()
-        app.buttons["0"].tap()
-        app.buttons["sin"].tap()
+        app.buttons["1"].tap()
+        app.buttons["C"].tap()
         
-        snapshot("sin(0)")
+        snapshot("Clear")
         
         XCTAssert(app.staticTexts["0"].exists)
     }
-    
 }
