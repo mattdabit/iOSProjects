@@ -33,16 +33,25 @@ class ViewControllerSpec: QuickSpec {
             }
             
             context("Display Result"){
-                it("should set display text to 2 after operation"){
-                    let number4 = UIButton()
-                    number4.setTitle("4", for: .normal)
-                    let sqrtButton = UIButton()
-                    sqrtButton.setTitle("√", for: .normal)
-                    
+                let number4 = UIButton()
+                number4.setTitle("4", for: .normal)
+                let sqrtButton = UIButton()
+                sqrtButton.setTitle("√", for: .normal)
+                
+                it("should set display text to sqrt of 4"){
                     viewController.touchDigit(number4)
                     viewController.performOperation(sqrtButton)
                     
                     expect(viewController.display.text!).to(equal("2"))
+                }
+                
+                it("should set display text to sqrt of 44"){
+                    viewController.touchDigit(number4)
+                    viewController.touchDigit(number4)
+
+                    viewController.performOperation(sqrtButton)
+                    
+                    expect(viewController.display.text!).to(equal("6.6332495807108"))
                 }
             }
         }

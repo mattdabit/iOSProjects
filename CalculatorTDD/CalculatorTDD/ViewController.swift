@@ -40,8 +40,12 @@ class ViewController: UIViewController {
         
         let result = brain.evaluate()
         
-        
-        display.text = String(format: "%.0f", result)
+        if floor(result) == result{
+            display.text = String(format: "%.0f", result)
+        } else {
+            display.text = String(result)
+        }
+       
     }
 }
 
