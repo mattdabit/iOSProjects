@@ -32,98 +32,29 @@ class ViewControllerSpec: QuickSpec {
                 
             }
             
-            context("Display Result for function"){
-                let number0 = UIButton()
-                let number1 = UIButton()
-                let number2 = UIButton()
-                let number3 = UIButton()
+            context("Display Result from evaluate"){
+            
                 let number4 = UIButton()
-                let number5 = UIButton()
-                let number6 = UIButton()
-                let number7 = UIButton()
-                let number8 = UIButton()
-                let number9 = UIButton()
-
-                number0.setTitle("0", for: .normal)
-                number1.setTitle("1", for: .normal)
-                number2.setTitle("2", for: .normal)
-                number3.setTitle("3", for: .normal)
+                
                 number4.setTitle("4", for: .normal)
-                number5.setTitle("5", for: .normal)
-                number6.setTitle("6", for: .normal)
-                number7.setTitle("7", for: .normal)
-                number8.setTitle("8", for: .normal)
-                number9.setTitle("9", for: .normal)
 
-                describe("Unary Operations"){
-                    context("sqrt"){
-                        let sqrtButton = UIButton()
-                        sqrtButton.setTitle("√", for: .normal)
-                        
-                        it("should set display text to 2"){
-                            viewController.touchDigit(number4)
-                            viewController.performOperation(sqrtButton)
-                            
-                            expect(viewController.display.text!).to(equal("2"))
-                        }
-                        
-                        it("should set display text to 6.6332495807108, checking that floats display correctly"){
-                            viewController.touchDigit(number4)
-                            viewController.touchDigit(number4)
-                            
-                            viewController.performOperation(sqrtButton)
-                            
-                            expect(viewController.display.text!).to(equal("6.6332495807108"))
-                        }
-                    }
+                let sqrtButton = UIButton()
+                sqrtButton.setTitle("√", for: .normal)
+                
+                it("should set display text to 2"){
+                    viewController.touchDigit(number4)
+                    viewController.performOperation(sqrtButton)
                     
-                    context("x²"){
-                        let squareButton = UIButton()
-                        squareButton.setTitle("x²", for: .normal)
-                        
-                        it("should set display text to 100"){
-                            viewController.touchDigit(number1)
-                            viewController.touchDigit(number0)
-                            
-                            viewController.performOperation(squareButton)
-                            
-                            expect(viewController.display.text!).to(equal("100"))
-                        }
-                    }
-                    
-                    context("±"){
-                        let plusMinusButton = UIButton()
-                        plusMinusButton.setTitle("±", for: .normal)
-                        
-                        it("should set display text to -4"){
-                            viewController.touchDigit(number4)
-                            viewController.performOperation(plusMinusButton)
-                            
-                            expect(viewController.display.text!).to(equal("-4"))
-                        }
-                    }
+                    expect(viewController.display.text!).to(equal("2"))
                 }
                 
-                describe("Constants"){
-                    context("π"){
-                        let piButton = UIButton()
-                        piButton.setTitle("π", for: .normal)
-                        
-                        it("should set display text to be value of π"){
-                            viewController.performOperation(piButton)
-                            expect(viewController.display.text!).to(equal(String(Double.pi)))
-                        }
-                    }
+                it("should set display text to 6.6332495807108, checking that floats display correctly"){
+                    viewController.touchDigit(number4)
+                    viewController.touchDigit(number4)
                     
-                    context("e"){
-                        let eButton = UIButton()
-                        eButton.setTitle("e", for: .normal)
-                        
-                        it("should set display text to be value of e"){
-                            viewController.performOperation(eButton)
-                            expect(viewController.display.text!).to(equal(String(M_E)))
-                        }
-                    }
+                    viewController.performOperation(sqrtButton)
+                    
+                    expect(viewController.display.text!).to(equal("6.6332495807108"))
                 }
             }
         }

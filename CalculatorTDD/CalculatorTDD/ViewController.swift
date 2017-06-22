@@ -39,11 +39,12 @@ class ViewController: UIViewController {
         }
         
         let result = brain.evaluate()
-        
-        if floor(result) == result{
-            display.text = String(format: "%.0f", result)
-        } else {
-            display.text = String(result)
+        if let resultValue = result{
+            if floor(resultValue) == resultValue{
+                display.text = String(format: "%.0f", resultValue)
+            } else {
+                display.text = String(resultValue)
+            }
         }
        
     }

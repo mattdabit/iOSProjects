@@ -13,6 +13,8 @@ struct CalculatorBrain {
     private enum Operation {
         case unaryOperation((Double) -> Double)
         case constant(Double)
+        case binaryOperation((Double, Double) -> Double)
+        case equal
     }
     
     private var operations: Dictionary<String, Operation> =
@@ -21,7 +23,12 @@ struct CalculatorBrain {
             "x²": Operation.unaryOperation({$0 * $0}),
             "±": Operation.unaryOperation({-$0}),
             "π": Operation.constant(Double.pi),
-            "e": Operation.constant(M_E)
+            "e": Operation.constant(M_E),
+            "+": Operation.binaryOperation(+),
+            "-": Operation.binaryOperation(-),
+            "×": Operation.binaryOperation(*),
+            "÷": Operation.binaryOperation(/),
+            "=": Operation.equal
         ]
     
     var operands = [String]()
@@ -30,9 +37,10 @@ struct CalculatorBrain {
         operands.append(operand)
     }
     
-    func evaluate() -> Double{
+    func evaluate() -> Double? {
         
         var result: Double?
+        var pendingBinaryOperation: PendingBinaryOperation?
         
         for operand in operands {
             if let operation = operations[operand]{
@@ -46,7 +54,12 @@ struct CalculatorBrain {
                 case .constant(let value):
                     result = value
                     
-                    
+                case .binaryOperation(let function):
+                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
+                    result = nil
+
+                case .equal:
+                    result = pendingBinaryOperation!.perform(secondOperand: result!)
                 }
                 
             } else if let operandValue = Double(operand) {
@@ -54,6 +67,18 @@ struct CalculatorBrain {
             }
         }
         
-        return result!
+        return result
+    }
+    
+    
+    
+    private struct PendingBinaryOperation {
+        let function: (Double, Double) -> Double
+        let firstOperand: Double
+        
+        func perform(secondOperand: Double) -> Double {
+            return function(firstOperand, secondOperand)
+        }
+        
     }
 }
