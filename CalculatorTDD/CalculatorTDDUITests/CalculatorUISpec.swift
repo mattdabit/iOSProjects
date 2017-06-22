@@ -89,4 +89,13 @@ class CalculatorUISpec: XCTestCase {
         snapshot("Negative of 4")
         XCTAssert(app.staticTexts["-4"].exists)
     }
+    
+    func testShouldDisplayPi() {
+        
+        let app = XCUIApplication()
+        app.buttons["π"].tap()
+        
+        XCTAssert(app.staticTexts["3.14159265358979"].exists)
+
+    }
 }
