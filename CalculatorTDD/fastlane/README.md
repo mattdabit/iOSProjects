@@ -45,6 +45,16 @@ Codesign
 fastlane ios test
 ```
 Runs all the tests
+### ios unit_test
+```
+fastlane ios unit_test
+```
+Runs Unit tests
+### ios ui_test
+```
+fastlane ios ui_test
+```
+Runs UI tests
 ### ios beta
 ```
 fastlane ios beta

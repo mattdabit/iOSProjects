@@ -65,7 +65,17 @@ class CalculatorUISpec: XCTestCase {
         
         snapshot("Sqrt of 4")
 
-        
         XCTAssert(app.staticTexts["2"].exists)
+    }
+    
+    func testShouldDisplaySquareOf4(){
+        
+        let app = XCUIApplication()
+        app.buttons["4"].tap()
+        app.buttons["x²"].tap()
+        
+        snapshot("Square of 4")
+        
+        XCTAssert(app.staticTexts["16"].exists)
     }
 }
