@@ -40,6 +40,15 @@ class CalculatorBrainSpec: QuickSpec {
                     
                     expect(result).to(equal(16))
                 }
+                
+                it("should return the result of 4 minus sign"){
+                    brain.setOperand("4")
+                    brain.setOperand("±")
+                    
+                    let result = brain.evaluate()
+                    
+                    expect(result).to(equal(-4))
+                }
             }
         }
     }

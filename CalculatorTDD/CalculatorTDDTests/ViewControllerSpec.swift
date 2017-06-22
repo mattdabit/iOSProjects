@@ -90,7 +90,20 @@ class ViewControllerSpec: QuickSpec {
                         expect(viewController.display.text!).to(equal("100"))
                     }
                 }
+                
+                context("±"){
+                    let plusMinusButton = UIButton()
+                    plusMinusButton.setTitle("±", for: .normal)
+                    
+                    it("should set display text to -4"){
+                        viewController.touchDigit(number4)
+                        viewController.performOperation(plusMinusButton)
+                        
+                        expect(viewController.display.text!).to(equal("-4"))
+                    }
+                }
             }
+            
         }
     }
 }

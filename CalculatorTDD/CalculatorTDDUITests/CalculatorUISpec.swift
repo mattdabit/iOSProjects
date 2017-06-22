@@ -78,4 +78,15 @@ class CalculatorUISpec: XCTestCase {
         
         XCTAssert(app.staticTexts["16"].exists)
     }
+    
+    func testShouldDisplayNegativeOfNumber(){
+        
+        let app = XCUIApplication()
+        app.buttons["4"].tap()
+        app.buttons["±"].tap()
+        
+        
+        snapshot("Negative of 4")
+        XCTAssert(app.staticTexts["-4"].exists)
+    }
 }
