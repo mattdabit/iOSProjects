@@ -22,6 +22,9 @@ struct CalculatorBrain {
             "√": Operation.unaryOperation(sqrt),
             "x²": Operation.unaryOperation({$0 * $0}),
             "±": Operation.unaryOperation({-$0}),
+            "sin": Operation.unaryOperation(sin),
+            "cos": Operation.unaryOperation(cos),
+            "tan": Operation.unaryOperation(tan),
             "π": Operation.constant(Double.pi),
             "e": Operation.constant(M_E),
             "+": Operation.binaryOperation(+),
@@ -69,7 +72,6 @@ struct CalculatorBrain {
         
         return result
     }
-    
     
     
     private struct PendingBinaryOperation {

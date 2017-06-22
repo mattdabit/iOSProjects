@@ -27,7 +27,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func touchDot(_ sender: UIButton) {
         let dot = sender.currentTitle!
         let textCurrentlyInDisplay = display.text!

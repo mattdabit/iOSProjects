@@ -55,6 +55,33 @@ class CalculatorBrainSpec: QuickSpec {
                         
                         expect(result).to(equal(-4))
                     }
+                    
+                    it("should return the result of sin(0)"){
+                        brain.setOperand("0")
+                        brain.setOperand("sin")
+                        
+                        let result = brain.evaluate()
+                        
+                        expect(result).to(equal(0))
+                    }
+                    
+                    it("should return the result of cos(0)"){
+                        brain.setOperand("0")
+                        brain.setOperand("cos")
+                        
+                        let result = brain.evaluate()
+                        
+                        expect(result).to(equal(1))
+                    }
+                    
+                    it("should return the result of tan(0)"){
+                        brain.setOperand("0")
+                        brain.setOperand("tan")
+                        
+                        let result = brain.evaluate()
+                        
+                        expect(result).to(equal(0))
+                    }
                 }
                 
                 context("constants"){

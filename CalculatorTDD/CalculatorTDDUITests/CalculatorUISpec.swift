@@ -173,4 +173,15 @@ class CalculatorUISpec: XCTestCase {
         XCTAssert(app.staticTexts["3"].exists)
     }
     
+    func testShouldGetSineOf0(){
+        
+        let app = XCUIApplication()
+        app.buttons["0"].tap()
+        app.buttons["sin"].tap()
+        
+        snapshot("sin(0)")
+        
+        XCTAssert(app.staticTexts["0"].exists)
+    }
+    
 }
