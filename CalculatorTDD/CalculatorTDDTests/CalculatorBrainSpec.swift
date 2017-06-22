@@ -22,7 +22,7 @@ class CalculatorBrainSpec: QuickSpec {
                 }
             }
             
-            context("evaluate"){
+            context("evaluate unary operations"){
                 it("should return the result of sqrt of 4"){
                     brain.setOperand("4")
                     brain.setOperand("√")
@@ -30,6 +30,15 @@ class CalculatorBrainSpec: QuickSpec {
                     let result = brain.evaluate()
                     
                     expect(result).to(equal(2))
+                }
+                
+                it("should return the result of 4 squared"){
+                    brain.setOperand("4")
+                    brain.setOperand("x²")
+                    
+                    let result = brain.evaluate()
+                    
+                    expect(result).to(equal(16))
                 }
             }
         }

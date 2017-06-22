@@ -16,7 +16,8 @@ struct CalculatorBrain {
     
     private var operations: Dictionary<String, Operation> =
         [
-            "√": Operation.unaryOperation(sqrt)
+            "√": Operation.unaryOperation(sqrt),
+            "x²": Operation.unaryOperation({$0 * $0})
         ]
     
     var operands = [String]()

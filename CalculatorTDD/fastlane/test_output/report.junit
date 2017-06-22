@@ -1,31 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='CalculatorTDDTests.xctest' tests='10' failures='6'>
+<testsuites name='CalculatorTDDTests.xctest' tests='13' failures='6'>
   <testsuite name='CalculatorTDDUITests.CalculatorUISpec' tests='6' failures='6'>
     <testcase classname='CalculatorTDDUITests.CalculatorUISpec' name='testShouldDisplaySqrtOfValue'>
-      <failure message='Failed to scroll to visible (by AX action) Button 0x608000168640: traits: 8589934593, {{70.0, 570.0}, {75.0, 75.0}}, label: &apos;√&apos;, error: Error -25204 performing AXAction 2003'>&lt;unknown&gt;:0</failure>
+      <failure message='Failed to scroll to visible (by AX action) Button 0x600000177b80: traits: 8589934593, {{70.0, 570.0}, {75.0, 75.0}}, label: &apos;√&apos;, error: Error -25204 performing AXAction 2003'>&lt;unknown&gt;:0</failure>
     </testcase>
     <testcase classname='CalculatorTDDUITests.CalculatorUISpec' name='testShouldDisplaySqrtOfValue'>
-      <failure message='Unable to find hit point for Button 0x618000169780: traits: 8589934593, {{70.0, 570.0}, {75.0, 75.0}}, label: &apos;√&apos;'>CalculatorUISpec.swift:50</failure>
+      <failure message='Unable to find hit point for Button 0x618000362c40: traits: 8589934593, {{70.0, 570.0}, {75.0, 75.0}}, label: &apos;√&apos;'>CalculatorUISpec.swift:57</failure>
     </testcase>
     <testcase classname='CalculatorTDDUITests.CalculatorUISpec' name='testShouldUpdateLabelTo1'>
-      <failure message='Failed to scroll to visible (by AX action) Button 0x60000016ccc0: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;, error: Error -25204 performing AXAction 2003'>&lt;unknown&gt;:0</failure>
+      <failure message='Failed to scroll to visible (by AX action) Button 0x618000363c00: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;, error: Error -25204 performing AXAction 2003'>&lt;unknown&gt;:0</failure>
     </testcase>
     <testcase classname='CalculatorTDDUITests.CalculatorUISpec' name='testShouldUpdateLabelTo1'>
-      <failure message='Unable to find hit point for Button 0x60000016e340: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;'>CalculatorUISpec.swift:35</failure>
+      <failure message='Unable to find hit point for Button 0x618000364b00: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;'>CalculatorUISpec.swift:42</failure>
     </testcase>
     <testcase classname='CalculatorTDDUITests.CalculatorUISpec' name='testShouldUpdateLabelTo10'>
-      <failure message='Failed to scroll to visible (by AX action) Button 0x618000165f40: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;, error: Error -25204 performing AXAction 2003'>&lt;unknown&gt;:0</failure>
+      <failure message='Failed to scroll to visible (by AX action) Button 0x61000017b180: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;, error: Error -25204 performing AXAction 2003'>&lt;unknown&gt;:0</failure>
     </testcase>
     <testcase classname='CalculatorTDDUITests.CalculatorUISpec' name='testShouldUpdateLabelTo10'>
-      <failure message='Unable to find hit point for Button 0x610000174d00: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;'>CalculatorUISpec.swift:41</failure>
+      <failure message='Unable to find hit point for Button 0x61000017c740: traits: 8589934593, {{153.0, 570.0}, {75.0, 75.0}}, label: &apos;1&apos;'>CalculatorUISpec.swift:48</failure>
     </testcase>
   </testsuite>
-  <testsuite name='CalculatorTDDTests.CalculatorBrainSpec' tests='2' failures='0'>
-    <testcase classname='CalculatorTDDTests.CalculatorBrainSpec' name='Calculator_Brain__setOperand__should_add_to_operands_list_when_called' time='0.006'/>
-    <testcase classname='CalculatorTDDTests.CalculatorBrainSpec' name='Calculator_Brain__evaluate__should_return_the_result_of_sqrt_of_4' time='0.002'/>
+  <testsuite name='CalculatorTDDTests.CalculatorBrainSpec' tests='3' failures='0'>
+    <testcase classname='CalculatorTDDTests.CalculatorBrainSpec' name='Calculator_Brain__setOperand__should_add_to_operands_list_when_called' time='0.004'/>
+    <testcase classname='CalculatorTDDTests.CalculatorBrainSpec' name='Calculator_Brain__evaluate_unary_operations__should_return_the_result_of_sqrt_of_4' time='0.002'/>
+    <testcase classname='CalculatorTDDTests.CalculatorBrainSpec' name='Calculator_Brain__evaluate_unary_operations__should_return_the_result_of_4_squared' time='0.001'/>
   </testsuite>
-  <testsuite name='CalculatorTDDTests.ViewControllerSpec' tests='2' failures='0'>
-    <testcase classname='CalculatorTDDTests.ViewControllerSpec' name='View_Controller_Spec__Initialization__should_have_CalculatorBrain' time='0.006'/>
-    <testcase classname='CalculatorTDDTests.ViewControllerSpec' name='View_Controller_Spec__Display_Result__should_set_display_text_to_2_after_operation' time='0.004'/>
+  <testsuite name='CalculatorTDDTests.ViewControllerSpec' tests='4' failures='0'>
+    <testcase classname='CalculatorTDDTests.ViewControllerSpec' name='View_Controller_Spec__Initialization__should_have_CalculatorBrain' time='0.005'/>
+    <testcase classname='CalculatorTDDTests.ViewControllerSpec' name='View_Controller_Spec__Display_Result_for_function_____should_set_display_text_to_2' time='0.004'/>
+    <testcase classname='CalculatorTDDTests.ViewControllerSpec' name='View_Controller_Spec__Display_Result_for_function_____should_set_display_text_to_6_6332495807108__checking_that_floats_display_correctly' time='0.003'/>
+    <testcase classname='CalculatorTDDTests.ViewControllerSpec' name='View_Controller_Spec__Display_Result_for_function__x²__should_set_display_text_to_100' time='0.003'/>
   </testsuite>
 </testsuites>
