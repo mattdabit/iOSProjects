@@ -50,6 +50,16 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(result).to(equal(-4))
                 }
             }
+            
+            context("evaluate constants"){
+                it("should set result to value π"){
+                    brain.setOperand("π")
+                    
+                    let result = brain.evaluate()
+                    
+                    expect(result).to(equal(Double.pi))
+                }
+            }
         }
     }
 }

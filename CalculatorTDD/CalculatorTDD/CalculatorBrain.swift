@@ -12,13 +12,15 @@ struct CalculatorBrain {
     
     private enum Operation {
         case unaryOperation((Double) -> Double)
+        case constant(Double)
     }
     
     private var operations: Dictionary<String, Operation> =
         [
             "√": Operation.unaryOperation(sqrt),
             "x²": Operation.unaryOperation({$0 * $0}),
-            "±": Operation.unaryOperation({-$0})
+            "±": Operation.unaryOperation({-$0}),
+            "π": Operation.constant(Double.pi)
         ]
     
     var operands = [String]()
@@ -34,15 +36,21 @@ struct CalculatorBrain {
         for operand in operands {
             if let operation = operations[operand]{
                 switch operation {
+                    
                 case .unaryOperation(let function):
                     if result != nil {
                         result = function(result!)
                     }
+                
+                case .constant(let value):
+                    result = value
+                    
+                    
                 }
+                
             } else if let operandValue = Double(operand) {
                 result = operandValue
             }
-            
         }
         
         return result!
