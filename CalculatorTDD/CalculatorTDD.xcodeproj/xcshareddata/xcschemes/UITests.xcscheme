@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F8111E3219A95C8B0040E7D1"
-               BuildableName = "Alamofire.framework"
-               BlueprintName = "Alamofire iOS"
-               ReferencedContainer = "container:Alamofire.xcodeproj">
+               BlueprintIdentifier = "32BF913F1EF31AC900CEE955"
+               BuildableName = "CalculatorTDD.app"
+               BlueprintName = "CalculatorTDD"
+               ReferencedContainer = "container:CalculatorTDD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F8111E3D19A95C8B0040E7D1"
-               BuildableName = "Alamofire iOS Tests.xctest"
-               BlueprintName = "Alamofire iOS Tests"
-               ReferencedContainer = "container:Alamofire.xcodeproj">
+               BlueprintIdentifier = "32BF915E1EF31AC900CEE955"
+               BuildableName = "CalculatorTDDUITests.xctest"
+               BlueprintName = "CalculatorTDDUITests"
+               ReferencedContainer = "container:CalculatorTDD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F8111E3D19A95C8B0040E7D1"
-               BuildableName = "Alamofire iOS Tests.xctest"
-               BlueprintName = "Alamofire iOS Tests"
-               ReferencedContainer = "container:Alamofire.xcodeproj">
+               BlueprintIdentifier = "32BF915E1EF31AC900CEE955"
+               BuildableName = "CalculatorTDDUITests.xctest"
+               BlueprintName = "CalculatorTDDUITests"
+               ReferencedContainer = "container:CalculatorTDD.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F8111E3219A95C8B0040E7D1"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire iOS"
-            ReferencedContainer = "container:Alamofire.xcodeproj">
+            BlueprintIdentifier = "32BF913F1EF31AC900CEE955"
+            BuildableName = "CalculatorTDD.app"
+            BlueprintName = "CalculatorTDD"
+            ReferencedContainer = "container:CalculatorTDD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,22 +75,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F8111E3219A95C8B0040E7D1"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire iOS"
-            ReferencedContainer = "container:Alamofire.xcodeproj">
+            BlueprintIdentifier = "32BF913F1EF31AC900CEE955"
+            BuildableName = "CalculatorTDD.app"
+            BlueprintName = "CalculatorTDD"
+            ReferencedContainer = "container:CalculatorTDD.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -103,10 +97,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F8111E3219A95C8B0040E7D1"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire iOS"
-            ReferencedContainer = "container:Alamofire.xcodeproj">
+            BlueprintIdentifier = "32BF913F1EF31AC900CEE955"
+            BuildableName = "CalculatorTDD.app"
+            BlueprintName = "CalculatorTDD"
+            ReferencedContainer = "container:CalculatorTDD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

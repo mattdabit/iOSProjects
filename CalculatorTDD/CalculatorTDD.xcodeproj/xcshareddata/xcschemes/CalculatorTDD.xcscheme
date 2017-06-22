@@ -38,16 +38,6 @@
                ReferencedContainer = "container:CalculatorTDD.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32BF915E1EF31AC900CEE955"
-               BuildableName = "CalculatorTDDUITests.xctest"
-               BlueprintName = "CalculatorTDDUITests"
-               ReferencedContainer = "container:CalculatorTDD.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

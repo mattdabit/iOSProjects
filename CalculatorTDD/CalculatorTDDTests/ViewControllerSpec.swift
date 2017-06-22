@@ -56,7 +56,7 @@ class ViewControllerSpec: QuickSpec {
                 number9.setTitle("9", for: .normal)
 
                 
-                context("√"){
+                context("sqrt"){
                     let sqrtButton = UIButton()
                     sqrtButton.setTitle("√", for: .normal)
 

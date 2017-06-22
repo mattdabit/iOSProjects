@@ -19,7 +19,7 @@ platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
 
-    carthage(platform: "iOS")
+    carthage(command: "update", platform: "iOS", cache_builds: true)
   end
 
   desc "Build artifact"
@@ -36,7 +36,18 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan
+    scan(scheme: "CalculatorTDD", device: "iPhone 7 Plus")
+    snapshot(scheme: "UITests")
+  end
+
+  desc "Runs Unit tests"
+  lane :unit_test do
+    scan(scheme: "CalculatorTDD", device: "iPhone 7 Plus")
+  end
+
+  desc "Runs UI tests"
+  lane :ui_test do
+    snapshot(scheme: "UITests")
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
