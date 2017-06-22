@@ -57,6 +57,19 @@ class CalculatorUISpec: XCTestCase {
         XCTAssert(app.staticTexts["10"].exists)
     }
     
+    func testShouldUpdateLabelTo1Dot4() {
+        let app = XCUIApplication()
+        
+        app.buttons["1"].tap()
+        app.buttons["."].tap()
+        app.buttons["4"].tap()
+
+        snapshot("Entered 1.4")
+        
+        XCTAssert(app.staticTexts["1.4"].exists)
+    }
+    
+    
     func testShouldDisplaySqrtOfValue(){
         let app = XCUIApplication()
         

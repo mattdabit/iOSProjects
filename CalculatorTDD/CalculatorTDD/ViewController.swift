@@ -27,6 +27,17 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func touchDot(_ sender: UIButton) {
+        let dot = sender.currentTitle!
+        let textCurrentlyInDisplay = display.text!
+        
+        if !textCurrentlyInDisplay.contains(dot) {
+            display.text = textCurrentlyInDisplay + dot
+            userInTheMiddleOfTyping = true
+        }
+    }
+    
     @IBAction func performOperation(_ sender: UIButton) {
         
         if userInTheMiddleOfTyping  {

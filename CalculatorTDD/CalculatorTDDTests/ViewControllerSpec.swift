@@ -35,8 +35,10 @@ class ViewControllerSpec: QuickSpec {
             context("Display Result from evaluate"){
             
                 let number4 = UIButton()
-                
                 number4.setTitle("4", for: .normal)
+                
+                let dotButton = UIButton()
+                dotButton.setTitle(".", for: .normal)
 
                 let sqrtButton = UIButton()
                 sqrtButton.setTitle("√", for: .normal)
@@ -55,6 +57,13 @@ class ViewControllerSpec: QuickSpec {
                     viewController.performOperation(sqrtButton)
                     
                     expect(viewController.display.text!).to(equal("6.6332495807108"))
+                }
+                
+                it("should set display text to 0.4"){
+                    viewController.touchDot(dotButton)
+                    viewController.touchDigit(number4)
+                    
+                    expect(viewController.display.text!).to(equal("0.4"))
                 }
             }
         }
