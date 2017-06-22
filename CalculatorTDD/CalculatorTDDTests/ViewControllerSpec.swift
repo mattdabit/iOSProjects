@@ -105,14 +105,23 @@ class ViewControllerSpec: QuickSpec {
                 }
                 
                 describe("Constants"){
-                    
-                    let piButton = UIButton()
-                    piButton.setTitle("π", for: .normal)
-                    
                     context("π"){
+                        let piButton = UIButton()
+                        piButton.setTitle("π", for: .normal)
+                        
                         it("should set display text to be value of π"){
                             viewController.performOperation(piButton)
                             expect(viewController.display.text!).to(equal(String(Double.pi)))
+                        }
+                    }
+                    
+                    context("e"){
+                        let eButton = UIButton()
+                        eButton.setTitle("e", for: .normal)
+                        
+                        it("should set display text to be value of e"){
+                            viewController.performOperation(eButton)
+                            expect(viewController.display.text!).to(equal(String(M_E)))
                         }
                     }
                 }

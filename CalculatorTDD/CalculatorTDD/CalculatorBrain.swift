@@ -20,7 +20,8 @@ struct CalculatorBrain {
             "√": Operation.unaryOperation(sqrt),
             "x²": Operation.unaryOperation({$0 * $0}),
             "±": Operation.unaryOperation({-$0}),
-            "π": Operation.constant(Double.pi)
+            "π": Operation.constant(Double.pi),
+            "e": Operation.constant(M_E)
         ]
     
     var operands = [String]()

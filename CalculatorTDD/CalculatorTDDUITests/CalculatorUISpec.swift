@@ -95,7 +95,14 @@ class CalculatorUISpec: XCTestCase {
         let app = XCUIApplication()
         app.buttons["π"].tap()
         
-        XCTAssert(app.staticTexts["3.14159265358979"].exists)
-
+        XCTAssert(app.staticTexts[String(Double.pi)].exists)
+    }
+    
+    func testShouldDisplayE() {
+        
+        let app = XCUIApplication()
+        app.buttons["e"].tap()
+        
+        XCTAssert(app.staticTexts[String(M_E)].exists)
     }
 }

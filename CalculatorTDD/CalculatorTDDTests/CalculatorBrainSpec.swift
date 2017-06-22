@@ -59,6 +59,14 @@ class CalculatorBrainSpec: QuickSpec {
                     
                     expect(result).to(equal(Double.pi))
                 }
+                
+                it("should set result to value e"){
+                    brain.setOperand("e")
+                    
+                    let result = brain.evaluate()
+                    
+                    expect(result).to(equal(M_E))
+                }
             }
         }
     }
