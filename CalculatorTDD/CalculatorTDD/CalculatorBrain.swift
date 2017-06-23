@@ -47,7 +47,7 @@ struct CalculatorBrain {
         
         var result: Double?
         var resultIsPending = false
-        let description = buildDescription().trimmingCharacters(in: .whitespaces)
+        let description = buildDescription()
         var pendingBinaryOperation: PendingBinaryOperation?
         
         for operand in operands {
@@ -125,7 +125,6 @@ struct CalculatorBrain {
                     currentBinaryOperand = nil
                 case .clear:
                     description = " "
-                    
                 }
             } else if isPending {
                 description = description.replacingOccurrences(of: " ...", with: " \(operand) ...")

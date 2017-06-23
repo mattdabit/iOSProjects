@@ -32,50 +32,8 @@ class CalculatorUISpec: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testShouldUpdateLabel() {
 
-        let app = XCUIApplication()
-        
-        app.buttons["1"].tap()
-        snapshot("Entered 1")
-        XCTAssert(app.staticTexts["1"].exists)
-        
-        app.buttons["0"].tap()
-        snapshot("Entered 10")
-        XCTAssert(app.staticTexts["10"].exists)
-        
-        app.buttons["C"].tap()
-        app.buttons["."].tap()
-        app.buttons["4"].tap()
-        
-        snapshot("Entered 0.4")
-        
-        XCTAssert(app.staticTexts["0.4"].exists)
-    }
-    
-    
-    func testShouldCalculateUnaryOperations(){
-        let app = XCUIApplication()
-        
-        app.buttons["4"].tap()
-        app.buttons["√"].tap()
-        snapshot("Sqrt of 4")
-        XCTAssert(app.staticTexts["2"].exists)
-
-    }
  
-    func testShouldCalculateBinaryOperations(){
-        
-        let app = XCUIApplication()
-        app.buttons["4"].tap()
-        app.buttons["+"].tap()
-        app.buttons["5"].tap()
-        app.buttons["="].tap()
-        snapshot("4 + 5")
-        XCTAssert(app.staticTexts["9"].exists)
-    }
-    
     func testShouldClearTheDisplay(){
         
         let app = XCUIApplication()
@@ -106,6 +64,8 @@ class CalculatorUISpec: XCTestCase {
         app.buttons["5"].tap()
         snapshot("4 + ... description")
         XCTAssert(app.staticTexts["4 + ..."].exists)
+        XCTAssert(app.staticTexts["5"].exists)
+
     }
     
     func testShouldShowDescriptionWhenNotPending(){
@@ -120,5 +80,6 @@ class CalculatorUISpec: XCTestCase {
 
         snapshot("4 + 5 = description edge case")
         XCTAssert(app.staticTexts["4 + 5 ="].exists)
+        XCTAssert(app.staticTexts["73"].exists)
     }
 }
