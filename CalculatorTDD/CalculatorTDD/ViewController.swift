@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayDescription: UILabel!
     
+    @IBOutlet weak var displayMemory: UILabel!
+    
     var userInTheMiddleOfTyping = false
     
     @IBAction func touchDigit(_ sender: UIButton) {
@@ -67,6 +69,7 @@ class ViewController: UIViewController {
     
     @IBAction func performWithVariables(_ sender: UIButton) {
         variables = ["M": Double(display.text!)!]
+        displayMemory.text = "M: \(display.text!)"
         let results = brain.evaluate(using: variables)
         
         if let result = results.result {

@@ -101,6 +101,8 @@ class CalculatorUISpec: XCTestCase {
         snapshot("Result: 4 Description: √(9 + M) =")
         XCTAssert(app.staticTexts["√(9 + M) ="].exists)
         XCTAssert(app.staticTexts["4"].exists)
+        XCTAssert(app.staticTexts["M: 7"].exists)
+
         
         app.buttons["+"].tap()
         app.buttons["1"].tap()
