@@ -47,7 +47,7 @@ struct CalculatorBrain {
         
         var result: Double?
         var resultIsPending = false
-
+        var description = ""
         var pendingBinaryOperation: PendingBinaryOperation?
         
         for operand in operands {
@@ -65,9 +65,19 @@ struct CalculatorBrain {
                 case .binaryOperation(let function):
                     resultIsPending = true
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
+                    description += " \(operand) ..."
                     result = nil
 
                 case .equal:
+                    var ellipsesReplacement: String
+                    if floor(result!) == result!{
+                        ellipsesReplacement = String(format: "%.0f", result!)
+                        ellipsesReplacement += " \(operand)"
+                    } else {
+                        ellipsesReplacement = "\(result!) \(operand)"
+                    }
+                    
+                    description = description.replacingOccurrences(of: "...", with: ellipsesReplacement)
                     result = pendingBinaryOperation!.perform(secondOperand: result!)
                     resultIsPending = false
                     
@@ -78,10 +88,13 @@ struct CalculatorBrain {
                 
             } else if let operandValue = Double(operand) {
                 result = operandValue
+                if !resultIsPending {
+                    description += String(operand)
+                }
             }
         }
         
-        return (result, "", resultIsPending)
+        return (result, description, resultIsPending)
     }
     
     

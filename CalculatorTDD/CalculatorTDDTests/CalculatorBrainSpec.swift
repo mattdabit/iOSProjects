@@ -27,6 +27,36 @@ class CalculatorBrainSpec: QuickSpec {
                 beforeEach {
                     brain.operands = []
                 }
+                
+                context("description"){
+                    it("should be 7 + ..."){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        let results = brain.evaluate()
+
+                        expect(results.description).to(equal("7 + ..."))
+                    }
+                    
+                    it("should be 7 + ... still"){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("7 + ..."))
+                    }
+                    
+                    it("should be 7 + 9 ="){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("=")
+
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("7 + 9 ="))
+                    }
+                }
         
                 context("unary operations"){
                     it("should return the result of sqrt of 4"){
