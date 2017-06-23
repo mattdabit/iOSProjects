@@ -101,4 +101,18 @@ class CalculatorUISpec: XCTestCase {
         XCTAssert(app.staticTexts["√(9 + M) + 14 ="].exists)
         XCTAssert(app.staticTexts["18"].exists)
     }
+    
+    func testShouldUndoLastOperation(){
+        let app = XCUIApplication()
+        
+        app.buttons["4"].tap()
+        app.buttons["+"].tap()
+        app.buttons["5"].tap()
+        app.buttons["="].tap()
+        app.buttons["undo"].tap()
+        
+        snapshot("= should be undone")
+        XCTAssert(app.staticTexts["4 + 5 ..."].exists)
+    }
+
 }
