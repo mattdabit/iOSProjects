@@ -33,18 +33,6 @@ class CalculatorUISpec: XCTestCase {
         super.tearDown()
     }
 
- 
-    func testShouldClearTheDisplay(){
-        
-        let app = XCUIApplication()
-        app.buttons["1"].tap()
-        app.buttons["C"].tap()
-        
-        snapshot("Clear")
-        
-        XCTAssert(app.staticTexts["0"].exists)
-    }
-    
     func testShouldShowDescription(){
         let app = XCUIApplication()
 

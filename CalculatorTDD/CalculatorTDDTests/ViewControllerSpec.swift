@@ -13,7 +13,8 @@ import Nimble
 class ViewControllerSpec: QuickSpec {
     override func spec() {
         describe("View Controller Spec"){
-            
+            let number4 = UIButton()
+            number4.setTitle("4", for: .normal)
             var viewController: ViewController!
             
             beforeEach {
@@ -34,8 +35,7 @@ class ViewControllerSpec: QuickSpec {
             
             context("Display Result from evaluate"){
             
-                let number4 = UIButton()
-                number4.setTitle("4", for: .normal)
+                
                 
                 let dotButton = UIButton()
                 dotButton.setTitle(".", for: .normal)
@@ -64,6 +64,37 @@ class ViewControllerSpec: QuickSpec {
                     viewController.touchDigit(number4)
                     
                     expect(viewController.display.text!).to(equal("0.4"))
+                }
+            }
+            
+            context("clear button"){
+                let clear = UIButton()
+                clear.setTitle("C", for: .normal)
+                let plus = UIButton()
+                plus.setTitle("+", for: .normal)
+                let memory = UIButton()
+                memory.setTitle("M", for: .normal)
+                let equalButton = UIButton()
+                equalButton.setTitle("=", for: .normal)
+                let memorySet = UIButton()
+                memorySet.setTitle("→M", for: .normal)
+                
+                
+                it("should clear memory and text variables"){
+                    viewController.touchDigit(number4)
+                    viewController.performOperation(plus)
+                    viewController.performOperation(memory)
+                    viewController.performOperation(equalButton)
+                    viewController.touchDigit(number4)
+                    viewController.performWithVariables(memorySet)
+                    
+                    expect(viewController.displayDescription.text!).to(equal("4 + M ="))
+                    expect(viewController.displayMemory.text!).to(equal("M: 4"))
+
+                    viewController.performOperation(clear)
+                    
+                    expect(viewController.displayDescription.text!).to(equal(" "))
+                    expect(viewController.displayMemory.text!).to(equal(" "))
                 }
             }
         }

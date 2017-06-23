@@ -51,6 +51,11 @@ class ViewController: UIViewController {
         
         if let mathematicalSymbol = sender.currentTitle {
             brain.setOperand(mathematicalSymbol)
+            if mathematicalSymbol == "C" {
+                variables = [:]
+                displayMemory.text = " "
+            }
+
         }
         
         let results = brain.evaluate(using: variables)
