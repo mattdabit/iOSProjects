@@ -11,7 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     var brain = CalculatorBrain()
     
+    
     @IBOutlet weak var display: UILabel!
+    
+    @IBOutlet weak var displayDescription: UILabel!
     
     var userInTheMiddleOfTyping = false
     
@@ -56,7 +59,8 @@ class ViewController: UIViewController {
                 display.text = String(resultValue)
             }
         }
-       
+        displayDescription.text = results.description
+
     }
 }
 
