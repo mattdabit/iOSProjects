@@ -33,54 +33,54 @@ class CalculatorBrainSpec: QuickSpec {
                         brain.setOperand("4")
                         brain.setOperand("√")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(2))
+                        expect(results.result).to(equal(2))
                     }
                     
                     it("should return the result of 4 squared"){
                         brain.setOperand("4")
                         brain.setOperand("x²")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(16))
+                        expect(results.result).to(equal(16))
                     }
                     
                     it("should return the result of 4 minus sign"){
                         brain.setOperand("4")
                         brain.setOperand("±")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(-4))
+                        expect(results.result).to(equal(-4))
                     }
                     
                     it("should return the result of sin(0)"){
                         brain.setOperand("0")
                         brain.setOperand("sin")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(0))
+                        expect(results.result).to(equal(0))
                     }
                     
                     it("should return the result of cos(0)"){
                         brain.setOperand("0")
                         brain.setOperand("cos")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(1))
+                        expect(results.result).to(equal(1))
                     }
                     
                     it("should return the result of tan(0)"){
                         brain.setOperand("0")
                         brain.setOperand("tan")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(0))
+                        expect(results.result).to(equal(0))
                     }
                 }
                 
@@ -88,17 +88,17 @@ class CalculatorBrainSpec: QuickSpec {
                     it("should return the value of π"){
                         brain.setOperand("π")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(Double.pi))
+                        expect(results.result).to(equal(Double.pi))
                     }
                     
                     it("should return the value of e"){
                         brain.setOperand("e")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(M_E))
+                        expect(results.result).to(equal(M_E))
                     }
                 }
                 
@@ -109,9 +109,9 @@ class CalculatorBrainSpec: QuickSpec {
                         brain.setOperand("3")
                         brain.setOperand("=")
 
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(5))
+                        expect(results.result).to(equal(5))
                     }
                     
                     it("should return the 2 times 3"){
@@ -120,9 +120,9 @@ class CalculatorBrainSpec: QuickSpec {
                         brain.setOperand("3")
                         brain.setOperand("=")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(6))
+                        expect(results.result).to(equal(6))
                     }
                     
                     it("should return the 3 minus 2"){
@@ -131,9 +131,9 @@ class CalculatorBrainSpec: QuickSpec {
                         brain.setOperand("2")
                         brain.setOperand("=")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(1))
+                        expect(results.result).to(equal(1))
                     }
                     
                     it("should return the 4 divided 2"){
@@ -142,9 +142,9 @@ class CalculatorBrainSpec: QuickSpec {
                         brain.setOperand("2")
                         brain.setOperand("=")
                         
-                        let result = brain.evaluate()
+                        let results = brain.evaluate()
                         
-                        expect(result).to(equal(2))
+                        expect(results.result).to(equal(2))
                     }
                 }
                 
@@ -156,8 +156,8 @@ class CalculatorBrainSpec: QuickSpec {
                         brain.setOperand("=")
                         brain.setOperand("C")
                         
-                        let result = brain.evaluate()
-                        expect(result).to(equal(0))
+                        let results = brain.evaluate()
+                        expect(results.result).to(equal(0))
                     }
                 }
             }

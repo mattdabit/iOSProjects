@@ -43,9 +43,11 @@ struct CalculatorBrain {
         operands.append(operand)
     }
     
-    func evaluate() -> Double? {
+    func evaluate() -> (result: Double?, description: String, isPending: Bool) {
         
         var result: Double?
+        var resultIsPending = false
+
         var pendingBinaryOperation: PendingBinaryOperation?
         
         for operand in operands {
@@ -61,14 +63,17 @@ struct CalculatorBrain {
                     result = value
                     
                 case .binaryOperation(let function):
+                    resultIsPending = true
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
                     result = nil
 
                 case .equal:
                     result = pendingBinaryOperation!.perform(secondOperand: result!)
+                    resultIsPending = false
                     
                 case .clear:
                     result = 0
+                    resultIsPending = false
                 }
                 
             } else if let operandValue = Double(operand) {
@@ -76,7 +81,7 @@ struct CalculatorBrain {
             }
         }
         
-        return result
+        return (result, "", resultIsPending)
     }
     
     

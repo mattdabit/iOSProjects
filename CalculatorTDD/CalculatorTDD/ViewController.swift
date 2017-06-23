@@ -48,8 +48,8 @@ class ViewController: UIViewController {
             brain.setOperand(mathematicalSymbol)
         }
         
-        let result = brain.evaluate()
-        if let resultValue = result{
+        let results = brain.evaluate()
+        if let resultValue = results.result{
             if floor(resultValue) == resultValue{
                 display.text = String(format: "%.0f", resultValue)
             } else {
