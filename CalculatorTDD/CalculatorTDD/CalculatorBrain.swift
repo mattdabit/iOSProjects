@@ -58,13 +58,18 @@ struct CalculatorBrain {
                     if result != nil {
                         result = function(result!)
                     }
-                
+                    
+                    description = description.replacingOccurrences(of: " =", with: "")
+                    description = "\(operand)(\(description)) ="
+
                 case .constant(let value):
                     result = value
                     
                 case .binaryOperation(let function):
                     resultIsPending = true
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: result!)
+            
+                    description = description.replacingOccurrences(of: " =", with: "")
                     description += " \(operand) ..."
                     result = nil
 

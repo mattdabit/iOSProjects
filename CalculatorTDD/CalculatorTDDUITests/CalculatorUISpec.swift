@@ -45,7 +45,6 @@ class CalculatorUISpec: XCTestCase {
         snapshot("Entered 10")
         XCTAssert(app.staticTexts["10"].exists)
         
-        
         app.buttons["C"].tap()
         app.buttons["."].tap()
         app.buttons["4"].tap()
@@ -64,16 +63,6 @@ class CalculatorUISpec: XCTestCase {
         snapshot("Sqrt of 4")
         XCTAssert(app.staticTexts["2"].exists)
 
-    }
-    
-    func testShouldDisplayConstants() {
-        
-        let app = XCUIApplication()
-        app.buttons["π"].tap()
-        
-        snapshot("π value")
-        
-        XCTAssert(app.staticTexts[String(Double.pi)].exists)
     }
  
     func testShouldCalculateBinaryOperations(){

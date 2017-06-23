@@ -28,7 +28,7 @@ class CalculatorBrainSpec: QuickSpec {
                     brain.operands = []
                 }
                 
-                context("description"){
+                context("the description"){
                     it("should be 7 + ..."){
                         brain.setOperand("7")
                         brain.setOperand("+")
@@ -56,6 +56,35 @@ class CalculatorBrainSpec: QuickSpec {
                         
                         expect(results.description).to(equal("7 + 9 ="))
                     }
+                    
+                    it("should be √(7 + 9) ="){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("=")
+                        brain.setOperand("√")
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("√(7 + 9) ="))
+                    }
+                    
+                    it("should be √(7 + 9) + 2 ="){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("=")
+                        brain.setOperand("√")
+                        brain.setOperand("+")
+                        brain.setOperand("2")
+                        brain.setOperand("=")
+
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("√(7 + 9) + 2 ="))
+                    }
+                    
                 }
         
                 context("unary operations"){
