@@ -43,7 +43,7 @@ struct CalculatorBrain {
         operands.append(operand)
     }
     
-    func evaluate() -> (result: Double?, description: String, isPending: Bool) {
+    func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result: Double?, description: String, isPending: Bool) {
         
         var result: Double?
         var resultIsPending = false
@@ -79,7 +79,14 @@ struct CalculatorBrain {
                 
             } else if let operandValue = Double(operand) {
                 result = operandValue
+                
+            } else if variables?[operand] == nil{
+                result = 0
+                
+            } else {
+                result = variables?[operand]
             }
+
         }
         
         return (result, description, resultIsPending)

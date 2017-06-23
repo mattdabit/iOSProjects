@@ -28,6 +28,19 @@ class CalculatorBrainSpec: QuickSpec {
                     brain.operands = []
                 }
                 
+                context("using variables"){
+                    let variables = ["x": 2.0]
+                    brain.setOperand("7")
+                    brain.setOperand("+")
+                    brain.setOperand("x")
+                    brain.setOperand("=")
+
+                    let results = brain.evaluate(using: variables)
+                    
+                    expect(results.result).to(equal(9))
+                    expect(results.description).to(equal("7 + x ="))
+                }
+                
                 context("the description"){
                     it("should be 7 + ..."){
                         brain.setOperand("7")
