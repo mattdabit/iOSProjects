@@ -43,6 +43,10 @@ struct CalculatorBrain {
         operands.append(operand)
     }
     
+    mutating func undo(){
+        let _ = operands.popLast()
+    }
+    
     func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result: Double?, description: String, isPending: Bool) {
         
         var result: Double?

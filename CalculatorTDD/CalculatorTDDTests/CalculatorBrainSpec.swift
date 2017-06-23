@@ -15,6 +15,10 @@ class CalculatorBrainSpec: QuickSpec {
         describe("Calculator Brain"){
             var brain = CalculatorBrain()
             
+            beforeEach {
+                brain.operands = []
+            }
+            
             context("setOperand"){
                 it("should add to operands list when called"){
                     brain.setOperand("√")
@@ -22,12 +26,20 @@ class CalculatorBrainSpec: QuickSpec {
                 }
             }
             
-            describe("evaluate"){
-                
-                beforeEach {
-                    brain.operands = []
+            context("undo"){
+                it("should remove last item in operands list"){
+                    brain.setOperand("√")
+                    brain.undo()
+                    expect(brain.operands).to(beEmpty())
+                    brain.undo()
+
+                    //Make sure no index error
+                    expect(brain.operands).to(beEmpty())
                 }
-                
+            }
+            
+            describe("evaluate"){
+
                 context("using variables"){
                     let variables = ["x": 2.0]
                     brain.setOperand("7")

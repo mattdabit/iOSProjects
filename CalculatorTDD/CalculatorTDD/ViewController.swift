@@ -87,7 +87,6 @@ class ViewController: UIViewController {
         
         displayDescription.text = results.description
         userInTheMiddleOfTyping = false
-
     }
 }
 
