@@ -82,4 +82,33 @@ class CalculatorUISpec: XCTestCase {
         XCTAssert(app.staticTexts["4 + 5 ="].exists)
         XCTAssert(app.staticTexts["73"].exists)
     }
+    
+    func testShouldShowDescriptionAndResultUsingMemory(){
+        let app = XCUIApplication()
+        
+        app.buttons["9"].tap()
+        app.buttons["+"].tap()
+        app.buttons["M"].tap()
+        app.buttons["="].tap()
+        app.buttons["√"].tap()
+        snapshot("Result: 3 Description: √(9 + M) =")
+        XCTAssert(app.staticTexts["√(9 + M) ="].exists)
+        XCTAssert(app.staticTexts["3"].exists)
+
+        
+        app.buttons["7"].tap()
+        app.buttons["→M"].tap()
+        snapshot("Result: 4 Description: √(9 + M) =")
+        XCTAssert(app.staticTexts["√(9 + M) ="].exists)
+        XCTAssert(app.staticTexts["4"].exists)
+        
+        app.buttons["+"].tap()
+        app.buttons["1"].tap()
+        app.buttons["4"].tap()
+        app.buttons["="].tap()
+
+        snapshot("Result: 18 Description: √(9 + M) + 14 =")
+        XCTAssert(app.staticTexts["√(9 + M) + 14 ="].exists)
+        XCTAssert(app.staticTexts["18"].exists)
+    }
 }

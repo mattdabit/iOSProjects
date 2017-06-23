@@ -51,7 +51,7 @@ class ViewController: UIViewController {
             brain.setOperand(mathematicalSymbol)
         }
         
-        let results = brain.evaluate()
+        let results = brain.evaluate(using: variables)
         if let resultValue = results.result{
             if floor(resultValue) == resultValue{
                 display.text = String(format: "%.0f", resultValue)
@@ -60,6 +60,25 @@ class ViewController: UIViewController {
             }
         }
         displayDescription.text = results.description
+
+    }
+    
+    private var variables: Dictionary<String, Double>?
+    
+    @IBAction func performWithVariables(_ sender: UIButton) {
+        variables = ["M": Double(display.text!)!]
+        let results = brain.evaluate(using: variables)
+        
+        if let result = results.result {
+            if floor(result) == result{
+                display.text = String(format: "%.0f", result)
+            } else {
+                display.text = String(result)
+            }
+        }
+        
+        displayDescription.text = results.description
+        userInTheMiddleOfTyping = false
 
     }
 }
