@@ -37,15 +37,6 @@ class CalculatorBrainSpec: QuickSpec {
                         expect(results.description).to(equal("7 + ..."))
                     }
                     
-                    it("should be 7 + ... still"){
-                        brain.setOperand("7")
-                        brain.setOperand("+")
-                        brain.setOperand("9")
-                        let results = brain.evaluate()
-                        
-                        expect(results.description).to(equal("7 + ..."))
-                    }
-                    
                     it("should be 7 + 9 ="){
                         brain.setOperand("7")
                         brain.setOperand("+")
@@ -85,6 +76,84 @@ class CalculatorBrainSpec: QuickSpec {
                         expect(results.description).to(equal("√(7 + 9) + 2 ="))
                     }
                     
+                    it("should be 7 + √(9) ..."){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("√")
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("7 + √(9) ..."))
+                    }
+                    
+                    it("should be 7 + √(9.5) ..."){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9.5")
+                        brain.setOperand("√")
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("7 + √(9.5) ..."))
+                    }
+                    
+                    it("should be 7 + √(9) ="){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("√")
+                        brain.setOperand("=")
+
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("7 + √(9) ="))
+                    }
+                    
+                    it("should be 7 + 9 + 6 + 3 ="){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("=")
+                        brain.setOperand("+")
+                        brain.setOperand("6")
+                        brain.setOperand("=")
+                        brain.setOperand("+")
+                        brain.setOperand("3")
+                        brain.setOperand("=")
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("7 + 9 + 6 + 3 ="))
+                    }
+                    
+                    it("should be 6 + 3 ="){
+                        brain.setOperand("7")
+                        brain.setOperand("+")
+                        brain.setOperand("9")
+                        brain.setOperand("=")
+                        brain.setOperand("√")
+                        brain.setOperand("6")
+                        brain.setOperand("+")
+                        brain.setOperand("3")
+                        brain.setOperand("=")
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("6 + 3 ="))
+                    }
+                    
+                    it("should be 4 + π ="){
+                        brain.setOperand("4")
+                        brain.setOperand("+")
+                        brain.setOperand("π")
+                        brain.setOperand("=")
+                        
+                        let results = brain.evaluate()
+                        
+                        expect(results.description).to(equal("4 + π ="))
+                    }
                 }
         
                 context("unary operations"){

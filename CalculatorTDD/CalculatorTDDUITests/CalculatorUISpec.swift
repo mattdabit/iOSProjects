@@ -97,4 +97,28 @@ class CalculatorUISpec: XCTestCase {
         snapshot("4 + 5 description")
         XCTAssert(app.staticTexts["4 + 5 ="].exists)
     }
+    
+    func testShouldShowDescriptionWhenPending(){
+        let app = XCUIApplication()
+        
+        app.buttons["4"].tap()
+        app.buttons["+"].tap()
+        app.buttons["5"].tap()
+        snapshot("4 + ... description")
+        XCTAssert(app.staticTexts["4 + ..."].exists)
+    }
+    
+    func testShouldShowDescriptionWhenNotPending(){
+        let app = XCUIApplication()
+        
+        app.buttons["4"].tap()
+        app.buttons["+"].tap()
+        app.buttons["5"].tap()
+        app.buttons["="].tap()
+        app.buttons["7"].tap()
+        app.buttons["3"].tap()
+
+        snapshot("4 + 5 = description edge case")
+        XCTAssert(app.staticTexts["4 + 5 ="].exists)
+    }
 }
